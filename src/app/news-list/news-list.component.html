@@ -1,0 +1,7 @@
+<div class="newsList">
+  <app-news-list-item
+    *ngFor="let newsEl of newsList; let i = index"
+    [news]="newsEl"
+    [index]="i"
+  ></app-news-list-item>
+</div>

@@ -18,5 +18,11 @@
       </svg>
     </div>
   </div>
-  <div></div>
+  <div class="profileContainerLogOut">
+    <span class="profileContainerLogOut__login">Log In</span>
+    <span class="profileContainerLogOut__signup">Sign Up</span>
+  </div>
+  <div *ngIf="isLogged">
+    <!-- Loged in UI -->
+  </div>
 </header>

@@ -1,10 +1,10 @@
 .header{
-  height: 8rem;
+  height: 7rem;
   background-color: var(--color-dark-main);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 4rem;
 }
 
 .logoContainer{
@@ -15,10 +15,40 @@
   color: #fff;
 
   &__text{
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   &__icon{
     height: 4rem;
+  }
+}
+
+.profileContainerLogOut{
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  &__login{
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px #fff solid;
+    transition: all 0.3s;
+
+    &:hover{
+      cursor: pointer;
+      color: #fff;
+      background-color: transparent;
+    }
+  }
+
+  &__signup{
+    font-size: 1.2rem;
+    text-decoration: underline;
+
+    &:hover{
+      cursor: pointer;
+    }
   }
 }

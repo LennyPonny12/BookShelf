@@ -1,0 +1,62 @@
+.content{
+  display: flex;
+  height: 15rem;
+  background-color: var(--color-darker-main);
+}
+
+.textContainer{
+  padding: 2rem;
+
+  &__heading{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__text{
+    font-size: 1.2rem;
+  }
+
+  &__date{
+    margin-top: 1rem;
+    display: block;
+  }
+}
+
+.imgContainer{
+  position: relative;
+
+  &__img{
+    object-fit: cover;
+    height: 15rem;
+  }
+
+  .after{
+    position: absolute;
+    opacity: 0;
+    font-size: 1.4rem;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000005a;
+    transition: 0.3s all;
+    user-select: none;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+.show{
+  opacity: 1 !important;
+  transition: 0.3s all;
+}
+
+.flexDirection{
+  flex-direction: row-reverse;
+}
