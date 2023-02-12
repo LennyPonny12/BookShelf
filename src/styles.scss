@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --color-light-main: #FFFBEB;
+  --color-darker-main: #FFE7CC;
+  --color-dark-main: #F8CBA6;
+}
+
+*,*::after,*::before{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  background-color: var(--color-light-main);
+}
