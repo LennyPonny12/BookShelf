@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="logoContainer">
+  <div class="logoContainer" routerLink="/">
     <span class="logoContainer__text"> BOOKSHELF </span>
     <div class="logoContainer__icon">
       <svg
@@ -19,8 +19,10 @@
     </div>
   </div>
   <div class="profileContainerLogOut">
-    <span class="profileContainerLogOut__login">Log In</span>
-    <span class="profileContainerLogOut__signup">Sign Up</span>
+    <span class="profileContainerLogOut__login" routerLink="/auth">Log In</span>
+    <span class="profileContainerLogOut__signup" routerLink="/auth"
+      >Sign Up</span
+    >
   </div>
   <div *ngIf="isLogged">
     <!-- Loged in UI -->

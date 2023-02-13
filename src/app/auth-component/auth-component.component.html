@@ -1,0 +1,28 @@
+<form class="form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+  <div class="emailContainer">
+    <label for="email">Email:</label>
+    <input
+      formControlName="email"
+      type="email"
+      id="email"
+      class="emailContainer__input"
+    />
+  </div>
+  <div class="passwordContainer">
+    <label for="password">Password:</label>
+    <input
+      formControlName="password"
+      type="password"
+      id="password"
+      class="passwordContainer__input"
+    />
+  </div>
+  <div class="buttonsContainer">
+    <button class="btn" (click)="logInMode = !logInMode" type="button">
+      Switch to {{ logInMode === false ? "Log in" : "Sign Up" }}
+    </button>
+    <button class="btn" type="submit">
+      {{ logInMode === true ? "Log in" : "Sign Up" }}
+    </button>
+  </div>
+</form>
