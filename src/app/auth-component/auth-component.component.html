@@ -6,7 +6,16 @@
       type="email"
       id="email"
       class="emailContainer__input"
+      [ngClass]="{
+        invalidInput:
+          !authForm.get('email').valid && authForm.get('email').touched
+      }"
     />
+    <span
+      class="invalidText"
+      *ngIf="!authForm.get('email').valid && authForm.get('email').touched"
+      >Please enter a valid email</span
+    >
   </div>
   <div class="passwordContainer">
     <label for="password">Password:</label>
@@ -15,14 +24,28 @@
       type="password"
       id="password"
       class="passwordContainer__input"
+      [ngClass]="{
+        invalidInput:
+          !authForm.get('password').valid && authForm.get('password').touched
+      }"
     />
+    <span
+      class="invalidText"
+      *ngIf="
+        !authForm.get('password').valid && authForm.get('password').touched
+      "
+      >Please enter a valid password (min 6 characters)</span
+    >
   </div>
   <div class="buttonsContainer">
-    <button class="btn" (click)="logInMode = !logInMode" type="button">
+    <button class="btn" (click)="onSwitchState()" type="button">
       Switch to {{ logInMode === false ? "Log in" : "Sign Up" }}
     </button>
     <button class="btn" type="submit">
       {{ logInMode === true ? "Log in" : "Sign Up" }}
     </button>
+  </div>
+  <div class="popup popupCover" #popup>
+    Switched to {{ logInMode === true ? "Log in" : "Sign Up" }}
   </div>
 </form>

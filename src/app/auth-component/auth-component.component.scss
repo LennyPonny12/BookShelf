@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 5rem;
   align-items: center;
+  position: relative;
 }
 
 .emailContainer,
@@ -39,4 +40,28 @@
     cursor: pointer;
     background-color: #fff;
   }
+}
+
+.invalidText {
+  color: rgb(164, 42, 42);
+  font-size: 1.4rem;
+}
+
+.invalidInput {
+  border: 1px solid rgb(164, 42, 42);
+}
+
+.popup {
+  position: absolute;
+  background-color: #dfffdc;
+  padding: 2rem 4rem;
+}
+
+.popupCover {
+  transform: translateY(-30rem);
+  transition: all 1s;
+}
+
+.popupIn {
+  transform: translateY(-5rem);
 }
