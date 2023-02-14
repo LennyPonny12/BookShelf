@@ -1,7 +1,8 @@
-export interface User {
-  uid: string;
+export interface AuthResponse {
+  idToken: string;
   email: string;
-  displayName: string;
-  photoURL: string;
-  emailVerified: boolean;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  registered?: boolean;
 }

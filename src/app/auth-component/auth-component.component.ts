@@ -6,6 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth-component',
@@ -15,9 +16,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AuthComponentComponent implements OnInit {
   @ViewChild('popup') popUp: ElementRef;
   logInMode = true;
+  stateAnimation = false;
   authForm: FormGroup;
+  error: string = null;
 
-  constructor(private rendere: Renderer2) {}
+  constructor(private rendere: Renderer2, private authService: AuthService) {}
 
   ngOnInit() {
     this.authForm = new FormGroup({
@@ -34,13 +37,40 @@ export class AuthComponentComponent implements OnInit {
     this.rendere.addClass(this.popUp.nativeElement, 'popupIn');
     this.rendere.removeClass(this.popUp.nativeElement, 'popCover');
 
-    setTimeout(() => {
-      this.rendere.removeClass(this.popUp.nativeElement, 'popupIn');
-      this.rendere.addClass(this.popUp.nativeElement, 'popCover');
-    }, 2000);
+    if (!this.stateAnimation) {
+      this.stateAnimation = true;
+      setTimeout(() => {
+        this.rendere.removeClass(this.popUp.nativeElement, 'popupIn');
+        this.rendere.addClass(this.popUp.nativeElement, 'popCover');
+        this.stateAnimation = false;
+      }, 2000);
+    }
   }
 
   onSubmit() {
-    console.log(this.authForm);
+    if (!this.authForm.valid) return;
+
+    let email = this.authForm.value.email;
+    let password = this.authForm.value.password;
+
+    if (this.logInMode) {
+      this.authService.logIn(email, password).subscribe(
+        (resData) => {
+          console.log(resData);
+        },
+        (errorRes) => {
+          this.error = this.authService.errorHandlingSingUp(errorRes);
+        }
+      );
+    } else {
+      this.authService.singUp(email, password).subscribe(
+        (resData) => {
+          console.log(resData);
+        },
+        (errorRes) => {
+          this.error = this.authService.errorHandlingSingUp(errorRes);
+        }
+      );
+    }
   }
 }

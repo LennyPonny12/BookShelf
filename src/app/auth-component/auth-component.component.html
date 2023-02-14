@@ -37,6 +37,9 @@
       >Please enter a valid password (min 6 characters)</span
     >
   </div>
+  <div class="errorMessage" *ngIf="error">
+    {{ error }}
+  </div>
   <div class="buttonsContainer">
     <button class="btn" (click)="onSwitchState()" type="button">
       Switch to {{ logInMode === false ? "Log in" : "Sign Up" }}

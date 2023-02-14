@@ -10,6 +10,7 @@ import { SidebarComponent } from './main-body/sidebar/sidebar.component';
 import { HeadereComponent } from './headere/headere.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import { AuthComponentComponent } from './auth-component/auth-component.componen
     SidebarComponent,
     AuthComponentComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
