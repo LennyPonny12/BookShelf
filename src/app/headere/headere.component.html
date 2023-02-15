@@ -18,13 +18,19 @@
       </svg>
     </div>
   </div>
-  <div class="profileContainerLogOut">
+  <div class="profileContainerLogOut" *ngIf="!user">
     <span class="profileContainerLogOut__login" routerLink="/auth">Log In</span>
     <span class="profileContainerLogOut__signup" routerLink="/auth"
       >Sign Up</span
     >
   </div>
-  <div *ngIf="isLogged">
-    <!-- Loged in UI -->
+  <div *ngIf="user">
+    <div>
+      <img [src]="user.imgUrl" alt="profilePic" />
+    </div>
+    <div>
+      <span>{{ user.username }}</span>
+      <span></span>
+    </div>
   </div>
 </header>

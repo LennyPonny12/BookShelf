@@ -6,6 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -15,12 +16,16 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthComponentComponent implements OnInit {
   @ViewChild('popup') popUp: ElementRef;
+  authForm: FormGroup;
   logInMode = true;
   stateAnimation = false;
-  authForm: FormGroup;
   error: string = null;
 
-  constructor(private rendere: Renderer2, private authService: AuthService) {}
+  constructor(
+    private rendere: Renderer2,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.authForm = new FormGroup({
@@ -56,21 +61,25 @@ export class AuthComponentComponent implements OnInit {
     if (this.logInMode) {
       this.authService.logIn(email, password).subscribe(
         (resData) => {
-          console.log(resData);
+          this.error = null;
+          this.authService.databaseCheck(resData);
+          this.router.navigate(['/..']);
         },
         (errorRes) => {
-          this.error = this.authService.errorHandlingSingUp(errorRes);
+          this.error = this.authService.handleError(errorRes);
         }
       );
     } else {
       this.authService.singUp(email, password).subscribe(
         (resData) => {
+          this.error = null;
           console.log(resData);
         },
         (errorRes) => {
-          this.error = this.authService.errorHandlingSingUp(errorRes);
+          this.error = this.authService.handleError(errorRes);
         }
       );
     }
+    this.authForm.reset();
   }
 }
