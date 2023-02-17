@@ -19,18 +19,48 @@
     </div>
   </div>
   <div class="profileContainerLogOut" *ngIf="!user">
-    <span class="profileContainerLogOut__login" routerLink="/auth">Log In</span>
-    <span class="profileContainerLogOut__signup" routerLink="/auth"
+    <span
+      class="profileContainerLogOut__login"
+      routerLink="/auth"
+      [queryParams]="{ singup: 'false' }"
+      >Log In</span
+    >
+    <span
+      class="profileContainerLogOut__signup"
+      routerLink="/auth"
+      [queryParams]="{ singup: 'true' }"
       >Sign Up</span
     >
   </div>
-  <div *ngIf="user">
-    <div>
-      <img [src]="user.imgUrl" alt="profilePic" />
+  <div *ngIf="user" class="profileContainerLogIn">
+    <div class="imgContainer">
+      <img [src]="user.imgUrl" alt="profilePic" class="imgContainer__img" />
     </div>
-    <div>
-      <span>{{ user.username }}</span>
-      <span></span>
+    <div class="contentContainer">
+      <span class="contentContainer__username">{{ user.username }}</span>
+      <span
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          class="contentContainer__icon"
+          (click)="dropdownFunction()"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+          />
+        </svg>
+      </span>
+      <div class="dropdown" #dropdown>
+        <ul class="dropdown__list">
+          <li class="dropdown__item">Profile</li>
+          <li class="dropdown__item">Edit Profile</li>
+          <li class="dropdown__item">Logout</li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>

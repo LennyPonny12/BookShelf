@@ -56,3 +56,71 @@
     }
   }
 }
+
+.profileContainerLogIn {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.imgContainer {
+  height: 4rem;
+
+  &__img {
+    object-fit: cover;
+    height: 100%;
+    border-radius: 5px;
+    border: 1 px solid #fff;
+  }
+}
+
+.contentContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__username {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  &__icon {
+    height: 1.5rem;
+    stroke: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  transform: translateY(100%);
+  width: 125%;
+  background-color: var(--color-darker-main);
+  opacity: 0;
+  transition: all 0.3s;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    padding: 1rem;
+    font-size: 1.4rem;
+    &:hover {
+      background-color: #fcf0e3;
+    }
+  }
+}
+.show {
+  transform: translateY(123%);
+  opacity: 1;
+}

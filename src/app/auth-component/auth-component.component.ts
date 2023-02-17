@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -24,7 +24,8 @@ export class AuthComponentComponent implements OnInit {
   constructor(
     private rendere: Renderer2,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -34,6 +35,10 @@ export class AuthComponentComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
+    });
+
+    this.route.queryParamMap.subscribe((param: ParamMap) => {
+      this.logInMode = param.get('singup') === 'false' ? true : false;
     });
   }
 
@@ -63,7 +68,6 @@ export class AuthComponentComponent implements OnInit {
         (resData) => {
           this.error = null;
           this.authService.databaseCheck(resData);
-          this.router.navigate(['/..']);
         },
         (errorRes) => {
           this.error = this.authService.handleError(errorRes);
@@ -73,7 +77,7 @@ export class AuthComponentComponent implements OnInit {
       this.authService.singUp(email, password).subscribe(
         (resData) => {
           this.error = null;
-          console.log(resData);
+          this.authService.databaseCheck(resData);
         },
         (errorRes) => {
           this.error = this.authService.handleError(errorRes);

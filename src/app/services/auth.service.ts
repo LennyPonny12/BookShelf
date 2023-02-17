@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthResponse } from './authResponse';
 import { User } from './user.inteface';
@@ -9,7 +10,7 @@ import { User } from './user.inteface';
 })
 export class AuthService {
   userSubj = new Subject<User>();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   singUp(emial: string, password: string) {
     return this.http.post<AuthResponse>(
@@ -60,7 +61,7 @@ export class AuthService {
   databaseCheck(resData: AuthResponse) {
     let user;
     this.http
-      .get(
+      .get<User>(
         `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
           0,
           6
@@ -70,21 +71,30 @@ export class AuthService {
         user = data;
         if (!user) {
           this.http
-            .post(
+            .post<User>(
               `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
                 0,
                 6
               )}/.json`,
-              { email: resData.email, username: 'UserDummy', imgUrl: 'Dummy' }
+              {
+                email: resData.email,
+                username: `User${resData.localId.slice(0, 4)}`,
+                imgUrl:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcCpFkOFiN-kJ1BgVgVKqhlCNfjNIeRtZKA&usqp=CAU',
+                numberBooks: 0,
+                books: [],
+              }
             )
             .subscribe((data) => {
               user = data;
               let userData: any = Object.values(user)[0];
               this.userSubj.next(userData);
+              this.router.navigate(['/..']);
             });
         } else {
           let userData: any = Object.values(user)[0];
           this.userSubj.next(userData);
+          this.router.navigate(['/..']);
         }
       });
   }
