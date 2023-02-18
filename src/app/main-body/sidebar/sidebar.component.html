@@ -1,27 +1,35 @@
 <div class="contentContainer">
-  <div class="content" [ngClass]="{ blur: user === null }">
+  <div class="content" [ngClass]="{ blur: !user }">
     <div class="content__profile" *ngIf="user">
-      <img [src]="user.imgUrl" alt="profile pic" />
-      <h2>{{ user.username }}</h2>
+      <img class="img" [src]="user.imgUrl" alt="profile pic" />
+      <h2 class="username">{{ user.username }}</h2>
     </div>
     <div class="content__stats">
-      <div>
-        <h3>BOOK READ</h3>
-        <span>{{ user.numberBooks }}</span>
+      <div class="statsContainer">
+        <h3 class="statsContainer__heading">BOOK READ:</h3>
+        <span class="statsContainer__number">{{
+          user !== null ? user.numberBooks : 0
+        }}</span>
       </div>
-      <div>
-        <h3>HOURS READ</h3>
-        <span>{{ user.numberBooks }}</span>
+      <div class="statsContainer">
+        <h3 class="statsContainer__heading">HOURS READ:</h3>
+        <span class="statsContainer__number">{{
+          user !== null ? user.numberBooks : 0
+        }}</span>
       </div>
-      <div>
-        <h3>LIKED REVIEWS</h3>
-        <span>{{ user.numberBooks }}</span>
+      <div class="statsContainer">
+        <h3 class="statsContainer__heading">LIKED REVIEWS:</h3>
+        <span class="statsContainer__number">{{
+          user !== null ? user.numberBooks : 0
+        }}</span>
       </div>
-      <div>
-        <h3>AVRAGE RATING</h3>
-        <span>{{ user.numberBooks }}</span>
+      <div class="statsContainer">
+        <h3 class="statsContainer__heading">AVRAGE RATING:</h3>
+        <span class="statsContainer__number">{{
+          user !== null ? user.numberBooks : 0
+        }}</span>
       </div>
     </div>
   </div>
-  <div class="logoutText" *ngIf="user">!Log in to see stats</div>
+  <div class="logoutText" *ngIf="!user">Log in to see stats</div>
 </div>

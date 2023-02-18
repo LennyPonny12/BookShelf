@@ -10,6 +10,7 @@ import { User } from './user.inteface';
 })
 export class AuthService {
   userSubj = new Subject<User>();
+  user: User = null;
   constructor(private http: HttpClient, private router: Router) {}
 
   singUp(emial: string, password: string) {
@@ -59,7 +60,7 @@ export class AuthService {
   }
 
   databaseCheck(resData: AuthResponse) {
-    let user;
+    let user: User;
     this.http
       .get<User>(
         `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
@@ -94,15 +95,15 @@ export class AuthService {
                   )}/.json`
                 )
                 .subscribe((data) => {
-                  let userData: any = Object.values(data)[0];
-                  this.userSubj.next(userData);
+                  this.user = Object.values(data)[0];
                   this.router.navigate(['/..']);
+                  this.userSubj.next(this.user);
                 });
             });
         } else {
-          let userData: any = Object.values(user)[0];
-          this.userSubj.next(userData);
+          this.user = Object.values(user)[0];
           this.router.navigate(['/..']);
+          this.userSubj.next(this.user);
         }
       });
   }
