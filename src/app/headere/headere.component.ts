@@ -4,6 +4,7 @@ import {
   Renderer2,
   ViewChild,
   OnInit,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../services/user.inteface';
@@ -18,11 +19,16 @@ export class HeadereComponent implements OnInit {
   user: User = null;
   dropdown: boolean = false;
 
-  constructor(private authService: AuthService, private rendere: Renderer2) {}
+  constructor(
+    private authService: AuthService,
+    private rendere: Renderer2,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.authService.userSubj.subscribe((data) => {
       this.user = data;
+      this.changeDetector.detectChanges();
     });
   }
 

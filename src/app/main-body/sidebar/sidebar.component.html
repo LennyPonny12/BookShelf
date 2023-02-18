@@ -1,4 +1,27 @@
 <div class="contentContainer">
-  <div class="content" [ngClass]="{ blur: isLogged === false }"></div>
-  <div class="logoutText" *ngIf="!isLogged">Log in to see stats</div>
+  <div class="content" [ngClass]="{ blur: user === null }">
+    <div class="content__profile" *ngIf="user">
+      <img [src]="user.imgUrl" alt="profile pic" />
+      <h2>{{ user.username }}</h2>
+    </div>
+    <div class="content__stats">
+      <div>
+        <h3>BOOK READ</h3>
+        <span>{{ user.numberBooks }}</span>
+      </div>
+      <div>
+        <h3>HOURS READ</h3>
+        <span>{{ user.numberBooks }}</span>
+      </div>
+      <div>
+        <h3>LIKED REVIEWS</h3>
+        <span>{{ user.numberBooks }}</span>
+      </div>
+      <div>
+        <h3>AVRAGE RATING</h3>
+        <span>{{ user.numberBooks }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="logoutText" *ngIf="user">!Log in to see stats</div>
 </div>

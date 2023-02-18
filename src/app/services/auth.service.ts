@@ -86,10 +86,18 @@ export class AuthService {
               }
             )
             .subscribe((data) => {
-              user = data;
-              let userData: any = Object.values(user)[0];
-              this.userSubj.next(userData);
-              this.router.navigate(['/..']);
+              this.http
+                .get(
+                  `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
+                    0,
+                    6
+                  )}/.json`
+                )
+                .subscribe((data) => {
+                  let userData: any = Object.values(data)[0];
+                  this.userSubj.next(userData);
+                  this.router.navigate(['/..']);
+                });
             });
         } else {
           let userData: any = Object.values(user)[0];
