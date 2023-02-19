@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './main-body/sidebar/sidebar.component';
+import { ProfileComponent } from './main-body/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SidebarComponent } from './main-body/sidebar/sidebar.component';
     NewsListItemComponent,
     SidebarComponent,
     AuthComponentComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

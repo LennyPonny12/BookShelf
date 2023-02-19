@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthResponse } from './authResponse';
+import { AuthResponse } from './authResponse.interface';
 import { User } from './user.inteface';
 
 @Injectable({
@@ -11,6 +11,7 @@ import { User } from './user.inteface';
 export class AuthService {
   userSubj = new Subject<User>();
   user: User = null;
+  tokenExpTimer: any;
   constructor(private http: HttpClient, private router: Router) {}
 
   singUp(emial: string, password: string) {
@@ -61,6 +62,9 @@ export class AuthService {
 
   databaseCheck(resData: AuthResponse) {
     let user: User;
+    let experationDate = new Date(
+      new Date().getTime() + +resData.expiresIn * 1000
+    );
     this.http
       .get<User>(
         `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
@@ -94,17 +98,54 @@ export class AuthService {
                     6
                   )}/.json`
                 )
-                .subscribe((data) => {
-                  this.user = Object.values(data)[0];
-                  this.router.navigate(['/..']);
-                  this.userSubj.next(this.user);
+                .subscribe((data: User) => {
+                  this.emitUser(data, resData, experationDate);
                 });
             });
         } else {
-          this.user = Object.values(user)[0];
-          this.router.navigate(['/..']);
-          this.userSubj.next(this.user);
+          this.emitUser(user, resData, experationDate);
         }
       });
+  }
+
+  emitUser(userData: User, resData, experationDate) {
+    this.user = Object.values(userData)[0];
+    this.user._token = resData.idToken;
+    this.user._tokenExpiration = experationDate;
+    this.router.navigate(['/..']);
+    this.userSubj.next(this.user);
+    localStorage.setItem('userData', JSON.stringify(this.user));
+    this.autoLogout(new Date(experationDate).getTime() - new Date().getTime());
+  }
+
+  autoLogin() {
+    let userData: User = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) return;
+
+    if (new Date(userData._tokenExpiration).getTime() > new Date().getTime()) {
+      this.user = userData;
+      this.userSubj.next(this.user);
+      this.autoLogout(
+        new Date(userData._tokenExpiration).getTime() - new Date().getTime()
+      );
+    }
+  }
+
+  autoLogout(expirationDuration: number) {
+    this.tokenExpTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
+  }
+
+  logout() {
+    this.user = null;
+    this.userSubj.next(null);
+    localStorage.removeItem('userData');
+    if (this.tokenExpTimer) clearTimeout(this.tokenExpTimer);
+  }
+
+  checkIsLogged() {
+    if (this.user) return true;
+    else return false;
   }
 }

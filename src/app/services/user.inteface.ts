@@ -6,4 +6,6 @@ export interface User {
   imgUrl: string;
   numberBooks: number;
   books: Book[];
+  _token: string;
+  _tokenExpiration: Date;
 }

@@ -56,9 +56,9 @@
       </span>
       <div class="dropdown" #dropdown>
         <ul class="dropdown__list">
-          <li class="dropdown__item">Profile</li>
+          <li class="dropdown__item" [routerLink]="['profile']">Profile</li>
           <li class="dropdown__item">Edit Profile</li>
-          <li class="dropdown__item">Logout</li>
+          <li class="dropdown__item" (click)="logout()">Logout</li>
         </ul>
       </div>
     </div>

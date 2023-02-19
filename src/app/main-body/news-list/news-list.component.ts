@@ -1,36 +1,40 @@
-import { Component } from '@angular/core';
-import { News } from './news';
+import { Component, OnInit } from '@angular/core';
+import { News } from 'src/app/services/news.interface';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news-list',
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.scss'],
 })
-export class NewsListComponent {
-  newsList: News[] = [
-    {
-      title: 'Some news',
-      content:
-        'An sincerity so extremity he additions. Her yet there truth merit. Mrs all projecting favourable now unpleasing. Son law garden chatty temper. Oh children provided to mr elegance marriage strongly. Off can ',
-      date: new Date().toLocaleTimeString(),
-      imgUrl:
-        'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Ym9va3xlbnwwfHwwfHw%3D&w=1000&q=80',
-    },
-    {
-      title: 'Some news',
-      content:
-        'An sincerity so extremity he additions. Her yet there truth merit. Mrs all projecting favourable now unpleasing. Son law garden chatty temper. Oh children provided to mr elegance marriage strongly. Off can ',
-      date: new Date().toLocaleTimeString(),
-      imgUrl:
-        'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Ym9va3xlbnwwfHwwfHw%3D&w=1000&q=80',
-    },
-    {
-      title: 'Some news',
-      content:
-        'An sincerity so extremity he additions. Her yet there truth merit. Mrs all projecting favourable now unpleasing. Son law garden chatty temper. Oh children provided to mr elegance marriage strongly. Off can ',
-      date: new Date().toLocaleTimeString(),
-      imgUrl:
-        'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Ym9va3xlbnwwfHwwfHw%3D&w=1000&q=80',
-    },
-  ];
+export class NewsListComponent implements OnInit {
+  constructor(private newsService: NewsService) {}
+
+  newsList: News[] = [];
+
+  ngOnInit() {
+    this.newsService.getNews().subscribe((data: News[]) => {
+      for (let news in data) {
+        this.newsList.push(data[news]);
+      }
+    });
+  }
+
+  // justpush() {
+  //   console.log('tf');
+  //   this.newsList.forEach((news) => {
+  //     this.http
+  //       .post(
+  //         `https://bookshelf-1a062-default-rtdb.firebaseio.com/news/.json`,
+  //         {
+  //           title: news.title,
+  //           imgUr: news.imgUrl,
+  //           author: news.author,
+  //           description: news.description,
+  //           date: news.date,
+  //         }
+  //       )
+  //       .subscribe();
+  //   });
+  // }
 }

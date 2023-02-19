@@ -1,6 +1,7 @@
 export interface News {
   title: string;
-  content: string;
-  date: string;
+  description: string;
+  author: string;
+  date: Date;
   imgUrl: string;
 }

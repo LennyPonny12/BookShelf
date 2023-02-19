@@ -4,7 +4,9 @@ import {
   Renderer2,
   ViewChild,
   OnInit,
+  OnDestroy,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { User } from '../services/user.inteface';
 
@@ -13,17 +15,23 @@ import { User } from '../services/user.inteface';
   templateUrl: './headere.component.html',
   styleUrls: ['./headere.component.scss'],
 })
-export class HeadereComponent implements OnInit {
+export class HeadereComponent implements OnInit, OnDestroy {
   @ViewChild('dropdown') dropdownElement: ElementRef;
   user: User = null;
   dropdown: boolean = false;
+  sub: Subscription;
 
   constructor(private authService: AuthService, private rendere: Renderer2) {}
 
   ngOnInit(): void {
-    this.authService.userSubj.subscribe((data) => {
+    this.sub = this.authService.userSubj.subscribe((data) => {
       this.user = data;
     });
+    this.user = this.authService.user;
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   dropdownFunction() {
@@ -34,5 +42,9 @@ export class HeadereComponent implements OnInit {
       this.rendere.removeClass(this.dropdownElement.nativeElement, 'show');
       this.dropdown = false;
     }
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
