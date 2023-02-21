@@ -1,36 +1,38 @@
-.content{
+.content {
   display: flex;
+  gap: 2rem;
   height: 15rem;
   background-color: var(--color-darker-main);
 }
 
-.textContainer{
+.textContainer {
   padding: 2rem;
 
-  &__heading{
+  &__heading {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
 
-  &__text{
+  &__text {
     font-size: 1.2rem;
   }
 
-  &__date{
+  &__date {
     margin-top: 1rem;
     display: block;
   }
 }
 
-.imgContainer{
+.imgContainer {
   position: relative;
 
-  &__img{
+  &__img {
     object-fit: cover;
     height: 15rem;
+    width: 22rem;
   }
 
-  .after{
+  .after {
     position: absolute;
     opacity: 0;
     font-size: 1.4rem;
@@ -46,17 +48,17 @@
     transition: 0.3s all;
     user-select: none;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
 }
 
-.show{
+.show {
   opacity: 1 !important;
   transition: 0.3s all;
 }
 
-.flexDirection{
+.flexDirection {
   flex-direction: row-reverse;
 }

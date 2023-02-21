@@ -1,11 +1,12 @@
-.firstBlock{
+.firstBlock {
   display: flex;
   gap: 5rem;
+  min-height: 40rem;
 }
-.newsList{
+.newsList {
   width: 60%;
 }
 
-.sidebar{
+.sidebar {
   width: 40%;
 }

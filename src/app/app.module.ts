@@ -12,6 +12,7 @@ import { AuthComponentComponent } from './auth-component/auth-component.componen
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './main-body/sidebar/sidebar.component';
 import { ProfileComponent } from './main-body/profile/profile.component';
+import { ActivityItemComponent } from './main-body/profile/activity-item/activity-item.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProfileComponent } from './main-body/profile/profile.component';
     SidebarComponent,
     AuthComponentComponent,
     ProfileComponent,
+    ActivityItemComponent,
   ],
   imports: [
     BrowserModule,

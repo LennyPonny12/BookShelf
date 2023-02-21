@@ -6,9 +6,10 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { User } from '../services/user.inteface';
+import { User } from '../interfaces/user.inteface';
 
 @Component({
   selector: 'app-headere',
@@ -21,7 +22,11 @@ export class HeadereComponent implements OnInit, OnDestroy {
   dropdown: boolean = false;
   sub: Subscription;
 
-  constructor(private authService: AuthService, private rendere: Renderer2) {}
+  constructor(
+    private authService: AuthService,
+    private rendere: Renderer2,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.sub = this.authService.userSubj.subscribe((data) => {
@@ -46,5 +51,6 @@ export class HeadereComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['main']);
   }
 }

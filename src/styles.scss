@@ -1,21 +1,24 @@
-:root{
-  --color-light-main: #FFFBEB;
-  --color-darker-main: #FFE7CC;
-  --color-dark-main: #F8CBA6;
+:root {
+  --color-light-main: #fffbeb;
+  --color-darker-main: #ffe7cc;
+  --color-dark-main: #f8cba6;
+  --typo-dark: 132, 94, 48;
 }
 
-*,*::after,*::before{
+*,
+*::after,
+*::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-html{
-  font-family: 'Roboto', sans-serif;
+html {
+  font-family: "Roboto", sans-serif;
   font-size: 62.5%;
   color: #333;
 }
 
-body{
+body {
   background-color: var(--color-light-main);
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { News } from 'src/app/services/news.interface';
+import { News } from 'src/app/interfaces/news.interface';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -11,30 +11,17 @@ export class NewsListComponent implements OnInit {
   constructor(private newsService: NewsService) {}
 
   newsList: News[] = [];
+  isBlur = true;
 
   ngOnInit() {
+    this.newsList = this.newsService.getDummyData();
     this.newsService.getNews().subscribe((data: News[]) => {
+      let arr = [];
       for (let news in data) {
-        this.newsList.push(data[news]);
+        arr.push(data[news]);
       }
+      this.newsList = arr;
+      this.isBlur = false;
     });
   }
-
-  // justpush() {
-  //   console.log('tf');
-  //   this.newsList.forEach((news) => {
-  //     this.http
-  //       .post(
-  //         `https://bookshelf-1a062-default-rtdb.firebaseio.com/news/.json`,
-  //         {
-  //           title: news.title,
-  //           imgUr: news.imgUrl,
-  //           author: news.author,
-  //           description: news.description,
-  //           date: news.date,
-  //         }
-  //       )
-  //       .subscribe();
-  //   });
-  // }
 }

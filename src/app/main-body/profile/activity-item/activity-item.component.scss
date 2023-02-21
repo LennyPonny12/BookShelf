@@ -1,0 +1,24 @@
+.content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  background-color: var(--color-darker-main);
+}
+
+.imgContainer {
+  height: 10rem;
+
+  &__img {
+    height: 10rem;
+  }
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  &__heading {
+    font-size: 2rem;
+  }
+}

@@ -1,12 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { News } from './news.interface';
+import { News } from '../interfaces/news.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService {
   constructor(private http: HttpClient) {}
+
+  placeHolderNews: News[] = [
+    {
+      author: 'Niklas',
+      date: new Date(),
+      description:
+        ' Certain be ye amiable by exposed so. To celebrated estimating excellence do. Coming either suffer living her gay theirs. Furnished do otherwise daughters contented conveying attempted no. Was yet general visitor present hundred too brother fat arrival. Friend are day own either lively new.  ',
+      imgUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg',
+      title: 'lol',
+    },
+    {
+      author: 'Niklas',
+      date: new Date(),
+      description:
+        ' Certain be ye amiable by exposed so. To celebrated estimating excellence do. Coming either suffer living her gay theirs. Furnished do otherwise daughters contented conveying attempted no. Was yet general visitor present hundred too brother fat arrival. Friend are day own either lively new.  ',
+      imgUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg',
+      title: 'lol',
+    },
+    {
+      author: 'Niklas',
+      date: new Date(),
+      description:
+        '. Certain be ye amiable by exposed so. To celebrated estimating excellence do. Coming either suffer living her gay theirs. Furnished do otherwise daughters contented conveying attempted no. Was yet general visitor present hundred too brother fat arrival. Friend are day own either lively new.  ',
+      imgUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg',
+      title: 'lol',
+    },
+  ];
+
+  getDummyData() {
+    return this.placeHolderNews;
+  }
 
   getNews() {
     return this.http.get(

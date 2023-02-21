@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthResponse } from './authResponse.interface';
-import { User } from './user.inteface';
+import { AuthResponse } from '../interfaces/authResponse.interface';
+import { User } from '../interfaces/user.inteface';
 
 @Injectable({
   providedIn: 'root',
@@ -87,7 +87,29 @@ export class AuthService {
                 imgUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcCpFkOFiN-kJ1BgVgVKqhlCNfjNIeRtZKA&usqp=CAU',
                 numberBooks: 0,
-                books: [],
+                books: [
+                  {
+                    author: 'Anna Linda',
+                    pages: 297,
+                    timeToRead: 3.9,
+                    rating: 4.1,
+                  },
+                ],
+                activity: [
+                  {
+                    title: 'Read a book',
+                    date: new Date(),
+                    imgUrl:
+                      'https://s.lubimyczytac.pl/upload/books/4000/4454/286617-170x243.jpg',
+                  },
+                  {
+                    title: 'Read a book',
+                    date: new Date(),
+                    imgUrl:
+                      'https://s.lubimyczytac.pl/upload/books/4000/4454/286617-170x243.jpg',
+                  },
+                ],
+                _id: resData.localId.slice(0, 6),
               }
             )
             .subscribe((data) => {

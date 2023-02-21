@@ -1,0 +1,13 @@
+<div class="content">
+  <div class="imgContainer">
+    <img
+      class="imgContainer__img"
+      [src]="activity.imgUrl"
+      alt="activity image"
+    />
+  </div>
+  <div class="textContainer">
+    <h2 class="textContainer__heading">{{ activity.title }}</h2>
+    <span class="textContainer__date">{{ getDate() }}</span>
+  </div>
+</div>

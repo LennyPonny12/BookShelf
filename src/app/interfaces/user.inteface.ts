@@ -1,3 +1,4 @@
+import { Activity } from './activity.inteface';
 import { Book } from './book.interface';
 
 export interface User {
@@ -6,6 +7,8 @@ export interface User {
   imgUrl: string;
   numberBooks: number;
   books: Book[];
+  activity: Activity[];
+  _id: string;
   _token: string;
   _tokenExpiration: Date;
 }

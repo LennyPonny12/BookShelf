@@ -1,1 +1,38 @@
-<div class="content"></div>
+<div class="content">
+  <header class="header">
+    <div class="upper">
+      <div class="imgContainer">
+        <img class="imgContainer__img" [src]="user.imgUrl" alt="profile pic" />
+      </div>
+      <span class="upper__text">Hello, {{ user.username }} </span>
+    </div>
+    <div class="lower">
+      <div class="statContainer">
+        <span class="statContainer__heading">Book read:</span>
+        <span class="statContainer__stat">{{ user.numberBooks }}</span>
+      </div>
+      <div class="statContainer">
+        <span class="statContainer__heading">Hours read:</span>
+        <span class="statContainer__stat">{{ user.numberBooks }}</span>
+      </div>
+      <div class="statContainer">
+        <span class="statContainer__heading">Avrage rating:</span>
+        <span class="statContainer__stat">{{ user.numberBooks }}</span>
+      </div>
+      <div class="statContainer">
+        <span class="statContainer__heading">Liked reviews:</span>
+        <span class="statContainer__stat">{{ user.numberBooks }}</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <span class="main__heading">Your activity:</span>
+    <div class="list">
+      <app-activity-item
+        *ngFor="let activity of user.activity"
+        [activity]="activity"
+      ></app-activity-item>
+    </div>
+  </main>
+</div>
