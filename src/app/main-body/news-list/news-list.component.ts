@@ -14,13 +14,16 @@ export class NewsListComponent implements OnInit {
   isBlur = true;
 
   ngOnInit() {
-    this.newsList = this.newsService.getDummyData();
+    this.newsService.news.subscribe((data: News[]) => {
+      this.newsList = data;
+    });
+
     this.newsService.getNews().subscribe((data: News[]) => {
       let arr = [];
       for (let news in data) {
         arr.push(data[news]);
       }
-      this.newsList = arr;
+      this.newsService.news.next(arr);
       this.isBlur = false;
     });
   }

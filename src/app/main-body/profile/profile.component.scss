@@ -55,6 +55,22 @@
     opacity: 1;
     transform: scale(0.97);
     padding: 4px;
+    cursor: pointer;
+  }
+
+  .icon {
+    opacity: 0;
+    height: 6rem;
+    stroke: #fff;
+    fill: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover .icon {
+    opacity: 1;
   }
 }
 
@@ -86,6 +102,8 @@
 
 .main {
   margin-top: 10rem;
+  display: flex;
+  gap: 4rem;
 
   &__heading {
     font-size: 2rem;
@@ -94,8 +112,18 @@
   }
 }
 
+.left {
+  width: 60%;
+}
+
 .list {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+}
+
+.noActivity {
+  margin-top: 6rem;
+  color: #999;
+  text-transform: uppercase;
 }

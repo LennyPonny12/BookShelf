@@ -10,6 +10,12 @@
     (mouseleave)="onHover = false"
   >
     <img [src]="news.imgUrl" alt="Some image" class="imgContainer__img" />
-    <div class="after" [ngClass]="{ show: onHover === true }">View more...</div>
+    <div
+      class="after"
+      (click)="onArticle()"
+      [ngClass]="{ show: onHover === true }"
+    >
+      View more...
+    </div>
   </div>
 </div>

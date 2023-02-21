@@ -8,13 +8,13 @@
       <div class="statsContainer">
         <h3 class="statsContainer__heading">BOOK READ:</h3>
         <span class="statsContainer__number">{{
-          user !== null ? user.numberBooks : 0
+          user !== null ? user.books.length : 0
         }}</span>
       </div>
       <div class="statsContainer">
         <h3 class="statsContainer__heading">HOURS READ:</h3>
         <span class="statsContainer__number">{{
-          user !== null ? user.numberBooks : 0
+          user !== null ? calcHours() : 0
         }}</span>
       </div>
       <div class="statsContainer">
