@@ -1,4 +1,11 @@
-.container{
+.container {
   max-width: 120rem;
   margin: 8rem auto;
+}
+
+.body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

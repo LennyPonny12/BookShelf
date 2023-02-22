@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { News } from 'src/app/interfaces/news.interface';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -11,20 +11,13 @@ export class NewsListComponent implements OnInit {
   constructor(private newsService: NewsService) {}
 
   newsList: News[] = [];
-  isBlur = true;
+  isBlur;
 
   ngOnInit() {
-    this.newsService.news.subscribe((data: News[]) => {
+    this.newsService.news.subscribe((data) => {
       this.newsList = data;
-    });
-
-    this.newsService.getNews().subscribe((data: News[]) => {
-      let arr = [];
-      for (let news in data) {
-        arr.push(data[news]);
-      }
-      this.newsService.news.next(arr);
-      this.isBlur = false;
+      this.newsService.isBlur++;
+      this.isBlur = this.newsService.isBlur;
     });
   }
 }

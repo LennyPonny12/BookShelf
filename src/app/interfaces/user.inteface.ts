@@ -5,7 +5,6 @@ export interface User {
   email: string;
   username: string;
   imgUrl: string;
-  numberBooks: number;
   books: Book[];
   activity: Activity[];
   _id: string;

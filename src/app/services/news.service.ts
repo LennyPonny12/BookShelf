@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { News } from '../interfaces/news.interface';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { News } from '../interfaces/news.interface';
 export class NewsService {
   constructor(private http: HttpClient) {}
 
-  placeHolderNews: News[] = [
+  news = new BehaviorSubject<News[]>([
     {
       author: 'Niklas',
       date: new Date(),
@@ -36,13 +37,22 @@ export class NewsService {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg',
       title: 'lol',
     },
-  ];
-
-  getDummyData() {
-    return this.placeHolderNews;
-  }
+  ]);
+  isBlur = 0;
 
   getNews() {
+    this.http
+      .get('https://bookshelf-1a062-default-rtdb.firebaseio.com/news.json')
+      .subscribe((data) => {
+        let arr = [];
+        for (let key in data) {
+          arr.push(data[key]);
+        }
+        this.news.next(arr);
+      });
+  }
+
+  getNewsReturn() {
     return this.http.get(
       'https://bookshelf-1a062-default-rtdb.firebaseio.com/news.json'
     );

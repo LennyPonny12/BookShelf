@@ -1,0 +1,24 @@
+.footer {
+  margin-top: 15rem;
+  display: flex;
+  background-color: #000000de;
+  height: 6rem;
+  align-items: center;
+  padding: 0 5rem;
+  color: #ffffff6d;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__icon {
+    height: 3rem;
+  }
+
+  &__text {
+    font-size: 1.8rem;
+  }
+}

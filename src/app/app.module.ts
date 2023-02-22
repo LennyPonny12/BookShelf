@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './main-body/sidebar/sidebar.component';
 import { ProfileComponent } from './main-body/profile/profile.component';
 import { ActivityItemComponent } from './main-body/profile/activity-item/activity-item.component';
+import { FooterComponent } from './footer/footer.component';
+import { NewsComponent } from './main-body/news-list/news-list-item/news/news.component';
+import { ShortPipe } from './main-body/news-list/news-list-item/short.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { ActivityItemComponent } from './main-body/profile/activity-item/activit
     AuthComponentComponent,
     ProfileComponent,
     ActivityItemComponent,
+    FooterComponent,
+    NewsComponent,
+    ShortPipe,
   ],
   imports: [
     BrowserModule,

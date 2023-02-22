@@ -1,4 +1,4 @@
-<div class="newsList" [ngClass]="{ blur: isBlur }">
+<div class="newsList" [ngClass]="{ blur: isBlur < 2 }">
   <app-news-list-item
     *ngFor="let newsEl of newsList; let i = index"
     [news]="newsEl"

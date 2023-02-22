@@ -86,7 +86,6 @@ export class AuthService {
                 username: `User${resData.localId.slice(0, 4)}`,
                 imgUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcCpFkOFiN-kJ1BgVgVKqhlCNfjNIeRtZKA&usqp=CAU',
-                numberBooks: 0,
                 books: [
                   {
                     author: 'Anna Linda',

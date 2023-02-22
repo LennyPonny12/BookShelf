@@ -54,7 +54,7 @@
           />
         </svg>
       </span>
-      <div class="dropdown" #dropdown>
+      <div class="dropdown" *ngIf="dropdown" #dropdown>
         <ul class="dropdown__list">
           <li class="dropdown__item" [routerLink]="['profile', user._id]">
             Profile

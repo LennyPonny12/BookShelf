@@ -1,0 +1,15 @@
+<article class="content" [ngClass]="{ blur: !isBlur }">
+  <div class="banner">
+    <img class="img" [src]="news.imgUrl" alt="banner" />
+    <span class="banner__text">{{ news.title }}</span>
+  </div>
+  <div class="main">
+    <div class="text">
+      {{ news.description }}
+    </div>
+    <footer class="footer">
+      <span class="footer__author">{{ news.author }}</span>
+      <span>{{ news.date }}</span>
+    </footer>
+  </div>
+</article>

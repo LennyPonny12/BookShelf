@@ -5,6 +5,7 @@ import {
   ViewChild,
   OnInit,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,6 +19,7 @@ import { User } from '../interfaces/user.inteface';
 })
 export class HeadereComponent implements OnInit, OnDestroy {
   @ViewChild('dropdown') dropdownElement: ElementRef;
+
   user: User = null;
   dropdown: boolean = false;
   sub: Subscription;
@@ -25,7 +27,8 @@ export class HeadereComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private rendere: Renderer2,
-    private router: Router
+    private router: Router,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -41,8 +44,9 @@ export class HeadereComponent implements OnInit, OnDestroy {
 
   dropdownFunction() {
     if (this.dropdown === false) {
-      this.rendere.addClass(this.dropdownElement.nativeElement, 'show');
       this.dropdown = true;
+      this.changeDetector.detectChanges();
+      this.rendere.addClass(this.dropdownElement.nativeElement, 'show');
     } else {
       this.rendere.removeClass(this.dropdownElement.nativeElement, 'show');
       this.dropdown = false;
