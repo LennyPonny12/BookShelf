@@ -1,0 +1,50 @@
+<div class="content">
+  <div class="headingContainer">
+    <span class="headingContainer__text">Search and browse books </span>
+  </div>
+  <div class="inputContainer">
+    <input
+      [(ngModel)]="inputValue"
+      (input)="listOfSearches()"
+      type="text"
+      class="inputContainer__input"
+    />
+    <svg
+      class="inputContainer__icon"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      />
+    </svg>
+  </div>
+  <div *ngIf="books.length > 0">
+    <ul class="list">
+      <li
+        class="item"
+        *ngFor="let book of books"
+        [routerLink]="['/book', book.id]"
+      >
+        <div class="itemBody">
+          <div class="imgContainer">
+            <img
+              class="imgContainer__img"
+              [src]="book.imgUrl"
+              alt="book image"
+            />
+          </div>
+          <div class="itemText">
+            <h4 class="itemText__heading">{{ book.author }}</h4>
+            <span class="itemText__text">{{ book.title }}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -16,6 +16,8 @@ import { ActivityItemComponent } from './main-body/profile/activity-item/activit
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './main-body/news-list/news-list-item/news/news.component';
 import { ShortPipe } from './main-body/news-list/news-list-item/short.pipe';
+import { SearchComponent } from './main-body/search/search.component';
+import { BookComponent } from './book/book.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ShortPipe } from './main-body/news-list/news-list-item/short.pipe';
     FooterComponent,
     NewsComponent,
     ShortPipe,
+    SearchComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,

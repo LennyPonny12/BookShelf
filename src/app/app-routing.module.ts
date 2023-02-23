@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
+import { BookComponent } from './book/book.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { NewsComponent } from './main-body/news-list/news-list-item/news/news.component';
 import { ProfileComponent } from './main-body/profile/profile.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
     ],
   },
   { path: 'news/:id', component: NewsComponent },
+  { path: 'book/:id', component: BookComponent },
 ];
 
 @NgModule({
