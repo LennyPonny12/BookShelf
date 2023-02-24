@@ -18,6 +18,7 @@ import { NewsComponent } from './main-body/news-list/news-list-item/news/news.co
 import { ShortPipe } from './main-body/news-list/news-list-item/short.pipe';
 import { SearchComponent } from './main-body/search/search.component';
 import { BookComponent } from './book/book.component';
+import { BookCommentComponent } from './book/book-comment/book-comment.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BookComponent } from './book/book.component';
     ShortPipe,
     SearchComponent,
     BookComponent,
+    BookCommentComponent,
   ],
   imports: [
     BrowserModule,

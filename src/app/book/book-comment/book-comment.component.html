@@ -1,0 +1,12 @@
+<div class="content" *ngIf="loaded">
+  <div class="userInfo">
+    <div class="imgContainer">
+      <img class="imgContainer__img" [src]="userImg" alt="profile image" />
+    </div>
+    <span class="userInfo__username">{{ userName }}</span>
+  </div>
+  <div class="textContainer">
+    <h4 class="textContainer__heading">{{ comment.title }}</h4>
+    <span class="textContainer__text">{{ comment.description }}</span>
+  </div>
+</div>

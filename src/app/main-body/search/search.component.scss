@@ -53,6 +53,8 @@
 
   &__img {
     height: 100%;
+    width: 6rem;
+    object-fit: cover;
     margin-top: -1px;
   }
 }

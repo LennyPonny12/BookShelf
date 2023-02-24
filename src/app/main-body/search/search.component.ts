@@ -18,7 +18,10 @@ export class SearchComponent {
     if (this.inputValue === '') return;
 
     this.bookService.books.getValue().forEach((book: Book) => {
-      if (book.title.slice(0, this.inputValue.length) === this.inputValue)
+      if (
+        book.title.slice(0, this.inputValue.length).toLowerCase() ===
+        this.inputValue.toLowerCase()
+      )
         this.books.push(book);
     });
   }

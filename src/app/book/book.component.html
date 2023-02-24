@@ -1,7 +1,27 @@
-<article class="content">
+<h2 *ngIf="!loaded">Loading</h2>
+<article class="content" *ngIf="loaded">
   <div class="header">
     <div class="imgContainer">
-      <img class="imgContainer__img" src="" alt="book image" />
+      <img class="imgContainer__img" [src]="book.imgUrl" alt="book image" />
     </div>
+    <div class="headingTextContainer">
+      <div class="infoContainer">
+        <h2 class="infoContainer__title">{{ book.title }}</h2>
+        <span class="infoContainer__author">{{ book.author }}</span>
+      </div>
+      <div class="headingTextContainer__text">{{ book.description }}</div>
+      <div class="lowerContainer">
+        <span class="lowerContainer__rating">Rating: {{ book.rating }}</span>
+        <span class="lowerContainer__comments"
+          >Comments: {{ book.comments ? book.comments.length : 0 }}</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="commentList">
+    <app-book-comment
+      *ngFor="let book of book.comments"
+      [comment]="book"
+    ></app-book-comment>
   </div>
 </article>

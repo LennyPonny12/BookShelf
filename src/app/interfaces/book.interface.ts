@@ -9,4 +9,5 @@ export interface Book {
   pages: number;
   timeToRead: number;
   rating: number;
+  description: string;
 }
