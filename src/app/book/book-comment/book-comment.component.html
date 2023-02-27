@@ -1,12 +1,37 @@
 <div class="content" *ngIf="loaded">
   <div class="userInfo">
     <div class="imgContainer">
-      <img class="imgContainer__img" [src]="userImg" alt="profile image" />
+      <img
+        class="imgContainer__img"
+        [src]="userImg"
+        alt="profile image"
+        [routerLink]="['/profile', comment.userId]"
+      />
     </div>
     <span class="userInfo__username">{{ userName }}</span>
   </div>
   <div class="textContainer">
-    <h4 class="textContainer__heading">{{ comment.title }}</h4>
-    <span class="textContainer__text">{{ comment.description }}</span>
+    <div class="textContainer__heading">
+      <span>
+        {{ comment.title }}
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="icon"
+        (click)="onDelete()"
+        *ngIf="checkIfCanDelete()"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </div>
+    <p class="textContainer__text">{{ comment.description }}</p>
   </div>
 </div>

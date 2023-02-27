@@ -47,6 +47,9 @@
 
 .commentList {
   margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .lowerContainer {
@@ -54,4 +57,52 @@
   gap: 1rem;
   color: #999;
   margin-top: -1.5rem;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid #000;
+  padding: 1rem 2rem;
+  margin-top: 4rem;
+  transition: all 0.3s;
+
+  &:hover {
+    transition: all 0.3s;
+    background-color: #fff;
+    cursor: pointer;
+  }
+}
+
+.commentContainer {
+  margin-top: 4rem;
+  border: 1px solid #000;
+  width: 60%;
+  padding: 2rem;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__text {
+    font-size: 1.4rem;
+  }
+
+  &__input {
+    width: 90%;
+    padding: 2px;
+  }
+}
+
+.btnComment {
+  margin-top: 2rem;
+  padding: 2px 1.4rem;
+  font-size: 1.2rem;
 }

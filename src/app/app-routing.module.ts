@@ -13,11 +13,8 @@ const routes: Routes = [
   { path: 'main', component: MainBodyComponent },
   { path: 'auth', component: AuthComponentComponent, canActivate: [AuthGuard] },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent,
-    children: [
-      { path: ':id', canActivate: [UserGuard], component: ProfileComponent },
-    ],
   },
   { path: 'news/:id', component: NewsComponent },
   { path: 'book/:id', component: BookComponent },

@@ -20,8 +20,35 @@
   </div>
   <div class="commentList">
     <app-book-comment
-      *ngFor="let book of book.comments"
+      *ngFor="let book of comments"
       [comment]="book"
+      (deleteEmmiter)="onDelete($event)"
     ></app-book-comment>
   </div>
+  <div *ngIf="isAddingComment" class="commentContainer">
+    <div class="inputsContainer">
+      <div class="inputContainer">
+        <label class="inputContainer__text" for="title">Title:</label>
+        <input
+          class="inputContainer__input"
+          type="text"
+          id="title"
+          [(ngModel)]="title"
+        />
+      </div>
+      <div class="inputContainer">
+        <label class="inputContainer__text" for="content">Content:</label>
+        <input
+          class="inputContainer__input"
+          type="text"
+          id="content"
+          [(ngModel)]="description"
+        />
+      </div>
+    </div>
+    <button class="btnComment btn" (click)="addComment()">Add</button>
+  </div>
+  <button class="btn" *ngIf="isLogged" (click)="isAddingComment = true">
+    Add comment
+  </button>
 </article>

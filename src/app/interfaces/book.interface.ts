@@ -1,7 +1,8 @@
 import { CommentInter } from './comment.interface';
 
 export interface Book {
-  id: number;
+  id: string;
+  idNumber: number;
   author: string;
   title: string;
   imgUrl: string;

@@ -169,4 +169,10 @@ export class AuthService {
     if (this.user) return true;
     else return false;
   }
+
+  getUser(userId: string) {
+    return this.http.get<User>(
+      `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/.json`
+    );
+  }
 }
