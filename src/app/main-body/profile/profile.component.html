@@ -15,7 +15,9 @@
           />
         </svg>
       </div>
-      <span class="upper__text">Hello, {{ user.username }} </span>
+      <span class="upper__text"
+        >{{ isLoggedProfile ? "Hello, " : "" }}{{ user.username }}
+      </span>
     </div>
     <div class="lower">
       <div class="statContainer">

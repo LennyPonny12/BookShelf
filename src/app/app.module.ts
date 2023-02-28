@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,10 +16,14 @@ import { ProfileComponent } from './main-body/profile/profile.component';
 import { ActivityItemComponent } from './main-body/profile/activity-item/activity-item.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './main-body/news-list/news-list-item/news/news.component';
-import { ShortPipe } from './main-body/news-list/news-list-item/short.pipe';
 import { SearchComponent } from './main-body/search/search.component';
 import { BookComponent } from './book/book.component';
 import { BookCommentComponent } from './book/book-comment/book-comment.component';
+import { ReviewsComponent } from './main-body/reviews/reviews.component';
+import { ReviewItemComponent } from './main-body/reviews/review-item/review-item.component';
+import { ShortPipe } from './services/short.pipe';
+import { ReviewPageComponent } from './review-page/review-page.component';
+import { AllReviewPageComponent } from './all-review-page/all-review-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,10 @@ import { BookCommentComponent } from './book/book-comment/book-comment.component
     SearchComponent,
     BookComponent,
     BookCommentComponent,
+    ReviewsComponent,
+    ReviewItemComponent,
+    ReviewPageComponent,
+    AllReviewPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +53,7 @@ import { BookCommentComponent } from './book/book-comment/book-comment.component
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

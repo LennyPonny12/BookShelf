@@ -1,0 +1,14 @@
+<div class="content">
+  <div class="headingContainer">
+    <div class="headingContainer__heading">Last reviews from our community</div>
+    <span class="headingContainer__subtext" [routerLink]="['/reviews']"
+      >See all reviews</span
+    >
+  </div>
+  <div class="reviewsList" *ngIf="reviews">
+    <app-review-item
+      *ngFor="let review of reviews"
+      [review]="review"
+    ></app-review-item>
+  </div>
+</div>

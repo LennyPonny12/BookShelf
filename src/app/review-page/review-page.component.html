@@ -1,0 +1,17 @@
+<article class="content" *ngIf="loaded">
+  <div class="banner">
+    <img class="img" [src]="img" alt="banner" />
+    <span class="banner__text">{{ review.title }}</span>
+  </div>
+  <div class="main">
+    <div class="text">
+      {{ review.content }}
+    </div>
+    <footer class="footer">
+      <span class="footer__author" [routerLink]="['/profile', authorId]">{{
+        author
+      }}</span>
+      <span>{{ review.date }}</span>
+    </footer>
+  </div>
+</article>

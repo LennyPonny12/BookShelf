@@ -1,0 +1,27 @@
+.reviewsList {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 3rem;
+  column-gap: 2rem;
+}
+
+.headingContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  &__heading {
+    font-size: var(--font-heading);
+  }
+
+  &__subtext {
+    color: #999;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

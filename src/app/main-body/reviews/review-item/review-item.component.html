@@ -1,0 +1,28 @@
+<div class="content">
+  <div
+    class="imgContainer"
+    (mouseenter)="onHoverFunction()"
+    (mouseleave)="onHoverFunction()"
+    [routerLink]="['/review', review.id]"
+  >
+    <img class="imgContainer__img" [src]="imgUrl" alt="review image" />
+    <div class="hoverText" [ngClass]="{ hoverTextShow: onHover }">Read...</div>
+    <div class="backgroundHover" [ngClass]="{ noBackground: !onHover }"></div>
+  </div>
+  <div class="textContiner">
+    <div
+      class="textContiner__heading"
+      (mouseenter)="onHoverFunction()"
+      (mouseleave)="onHoverFunction()"
+    >
+      {{ review.title }}
+    </div>
+    <div
+      class="textContiner__content"
+      (mouseenter)="onHoverFunction()"
+      (mouseleave)="onHoverFunction()"
+    >
+      {{ review.content | short : 200 }}
+    </div>
+  </div>
+</div>
