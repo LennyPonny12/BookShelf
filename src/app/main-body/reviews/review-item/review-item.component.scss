@@ -1,6 +1,7 @@
 .content {
   background-color: var(--color-darker-main);
   box-shadow: 0 0 2rem #00000052;
+  height: 100%;
 }
 
 .imgContainer {
@@ -27,6 +28,7 @@
     font-size: 1.4rem;
     line-height: 1.8;
     margin-top: 1rem;
+    word-break: break-all;
 
     &:hover {
       cursor: pointer;

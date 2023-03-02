@@ -1,0 +1,25 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 4rem;
+}
+
+.addContainer {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__icon {
+    height: 4rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__text {
+    font-size: 2rem;
+  }
+}

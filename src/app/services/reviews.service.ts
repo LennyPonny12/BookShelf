@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 import { Book } from '../interfaces/book.interface';
 import { Review } from '../interfaces/review';
@@ -41,19 +42,45 @@ export class ReviewsService {
     );
   }
 
-  postReview() {
+  postReview(userId: string, bookId: string, title: string, content: string) {
     this.http
-      .post<Review>(
-        'https://bookshelf-1a062-default-rtdb.firebaseio.com/reviews/.json',
-        {
-          userId: 'bqiAjj',
-          bookId: '-NP-DZmv1NLdSIrzGEUG',
-          title: 'Another Review',
-          content:
-            'Death, what would make more sense than to laugh about and together with the inevitable skinny buddy, but don´t dare to try to manipulate him and his work, oh no. Not just because asking for trouble with an interdimensional, almighty entity is a bit of a stupid idea and destined to end badly, but because of the stability of the universe and reality, congestion, overpopulation, or underutilization of earth, dungeon dimensions, heaven, or hell, and stuff related to his work.',
-          date: new Date(),
-        }
+      .get(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/.json`
       )
-      .subscribe();
+      .subscribe((data) => {
+        this.http
+          .post<Review>(
+            'https://bookshelf-1a062-default-rtdb.firebaseio.com/reviews/.json',
+            {}
+          )
+          .subscribe((dataInner) => {
+            console.log(dataInner);
+            this.http
+              .put(
+                `https://bookshelf-1a062-default-rtdb.firebaseio.com/reviews/${
+                  Object.values(dataInner)[0]
+                }/.json`,
+                {
+                  userId: userId,
+                  bookId: bookId,
+                  title: title,
+                  content: content,
+                  date: new Date(),
+                  id: Object.values(dataInner)[0],
+                }
+              )
+              .subscribe();
+            this.http
+              .post<Review>(
+                `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/${
+                  Object.keys(data)[0]
+                }/reviews/.json`,
+                {
+                  id: Object.values(dataInner)[0],
+                }
+              )
+              .subscribe();
+          });
+      });
   }
 }

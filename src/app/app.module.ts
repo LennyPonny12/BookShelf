@@ -24,6 +24,7 @@ import { ReviewItemComponent } from './main-body/reviews/review-item/review-item
 import { ShortPipe } from './services/short.pipe';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { AllReviewPageComponent } from './all-review-page/all-review-page.component';
+import { NewReviewComponent } from './all-review-page/new-review/new-review.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AllReviewPageComponent } from './all-review-page/all-review-page.compon
     ReviewItemComponent,
     ReviewPageComponent,
     AllReviewPageComponent,
+    NewReviewComponent,
   ],
   imports: [
     BrowserModule,

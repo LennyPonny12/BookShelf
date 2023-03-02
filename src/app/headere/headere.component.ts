@@ -56,5 +56,6 @@ export class HeadereComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.logout();
     this.router.navigate(['main']);
+    this.dropdownFunction();
   }
 }
