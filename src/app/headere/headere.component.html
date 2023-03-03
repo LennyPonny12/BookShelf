@@ -64,7 +64,11 @@
           >
             Profile
           </li>
-          <li class="dropdown__item" (click)="dropdownFunction()">
+          <li
+            class="dropdown__item"
+            (click)="dropdownFunction()"
+            [routerLink]="['/profile', user._id, 'edit']"
+          >
             Edit Profile
           </li>
           <li class="dropdown__item" (click)="logout()">Logout</li>

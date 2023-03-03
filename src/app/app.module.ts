@@ -12,8 +12,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './main-body/sidebar/sidebar.component';
-import { ProfileComponent } from './main-body/profile/profile.component';
-import { ActivityItemComponent } from './main-body/profile/activity-item/activity-item.component';
+import { ActivityItemComponent } from './main-body/profile/profile-page/activity-item/activity-item.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './main-body/news-list/news-list-item/news/news.component';
 import { SearchComponent } from './main-body/search/search.component';
@@ -25,6 +24,10 @@ import { ShortPipe } from './services/short.pipe';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { AllReviewPageComponent } from './all-review-page/all-review-page.component';
 import { NewReviewComponent } from './all-review-page/new-review/new-review.component';
+import { ReviewProfileItemComponent } from './main-body/profile/profile-page/review-profile-item/review-profile-item.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ProfilePageComponent } from './main-body/profile/profile-page/profile-page.component';
+import { ProfileComponent } from './main-body/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { NewReviewComponent } from './all-review-page/new-review/new-review.comp
     ReviewPageComponent,
     AllReviewPageComponent,
     NewReviewComponent,
+    ReviewProfileItemComponent,
+    EditProfileComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

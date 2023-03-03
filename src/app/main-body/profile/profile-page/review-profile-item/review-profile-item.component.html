@@ -1,0 +1,37 @@
+<div class="content" *ngIf="loaded">
+  <div
+    class="imgContainer"
+    (mouseenter)="onHover = true"
+    (mouseleave)="onHover = false"
+  >
+    <img class="imgContainer__img" [src]="imgUrl" alt="review photo" />
+    <div
+      class="imgContainer__background"
+      [ngClass]="{ onHover: onHover }"
+      [routerLink]="['/review', reviewId]"
+    ></div>
+    <span
+      [ngClass]="{ onHover: onHover }"
+      [routerLink]="['/review', reviewId]"
+      class="imgContainer__text"
+      >Read more...</span
+    >
+  </div>
+  <div class="textContainer">
+    <h2
+      class="textContainer__title"
+      [routerLink]="['/review', reviewId]"
+      (mouseenter)="onHover = true"
+      (mouseleave)="onHover = false"
+    >
+      {{ review.title }}
+    </h2>
+    <span
+      (mouseenter)="onHover = true"
+      (mouseleave)="onHover = false"
+      class="textContainer__content"
+      [routerLink]="['/review', reviewId]"
+      >{{ review.content | short : 150 }}</span
+    >
+  </div>
+</div>

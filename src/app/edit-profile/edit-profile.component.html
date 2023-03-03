@@ -1,0 +1,31 @@
+<div class="content">
+  <h2 class="heading">Edit your profile {{ user.username }}:</h2>
+  <div class="mainContent">
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="editForm">
+      <div class="inputContainer">
+        <label class="inputContainer__text" for="username"
+          >Username (min 6 characters)</label
+        >
+        <input
+          class="inputContainer__input"
+          type="text"
+          id="username"
+          formControlName="username"
+        />
+      </div>
+      <div class="inputContainer">
+        <label class="inputContainer__text" for="imageUrl">Image Url</label>
+        <input
+          formControlName="imgUrl"
+          class="inputContainer__input"
+          type="text"
+          id="imageUrl"
+        />
+      </div>
+      <button [disabled]="!editForm.valid" class="btn">Save</button>
+    </form>
+    <div class="imgContainer">
+      <img class="imgContainer__img" [src]="imgUrl" alt="profile pic" />
+    </div>
+  </div>
+</div>
