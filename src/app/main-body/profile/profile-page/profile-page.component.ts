@@ -26,18 +26,17 @@ export class ProfilePageComponent {
     this.autService
       .getUser(this.route.snapshot.paramMap.get('id'))
       .subscribe((user: User) => {
-        let userRight = Object.values(user)[0];
         this.user = {
-          username: userRight.username,
-          id: userRight._id,
-          activity: userRight.activity,
-          books: userRight.books,
-          imgUrl: userRight.imgUrl,
+          username: user.username,
+          id: user._id,
+          activity: user.activity,
+          books: user.books,
+          imgUrl: user.imgUrl,
           reviews: [],
         };
         //getting reviews
-        for (let review in userRight.reviews) {
-          this.user.reviews.push(userRight.reviews[review]);
+        for (let review in user.reviews) {
+          this.user.reviews.push(user.reviews[review]);
         }
         this.loaded = true;
 

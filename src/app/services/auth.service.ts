@@ -75,8 +75,9 @@ export class AuthService {
       .subscribe((data) => {
         user = data;
         if (!user) {
+          console.log(resData);
           this.http
-            .post<User>(
+            .put<User>(
               `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
                 0,
                 6
@@ -130,7 +131,7 @@ export class AuthService {
   }
 
   emitUser(userData: User, resData, experationDate) {
-    this.user = Object.values(userData)[0];
+    this.user = userData;
     this.user._token = resData.idToken;
     this.user._tokenExpiration = experationDate;
     this.router.navigate(['/..']);
@@ -174,5 +175,23 @@ export class AuthService {
     return this.http.get<User>(
       `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/.json`
     );
+  }
+
+  updateUser(user) {
+    this.http
+      .put(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${user._id}/.json`,
+        { ...user }
+      )
+      .subscribe((data) => {
+        this.user = {
+          ...user,
+          _token: this.user._token,
+          _tokenExpiration: this.user._tokenExpiration,
+        };
+        localStorage.removeItem('userData');
+        localStorage.setItem('userData', JSON.stringify(this.user));
+        this.userSubj.next(this.user);
+      });
   }
 }

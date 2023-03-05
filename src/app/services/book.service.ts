@@ -50,9 +50,9 @@ export class BookSerivce {
     return this.books.getValue()[id];
   }
 
-  getUserComment(id: string) {
+  getUserComment() {
     return this.http.get<User>(
-      `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${id}.json`
+      `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/.json`
     );
   }
 

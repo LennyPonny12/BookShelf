@@ -21,7 +21,7 @@ export class BookCommentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bookService.getUserComment(this.comment.userId).subscribe((data) => {
+    this.bookService.getUserComment().subscribe((data) => {
       let user = Object.values(data)[0];
       this.userName = user.username;
       this.userImg = user.imgUrl;

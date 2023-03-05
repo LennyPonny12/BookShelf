@@ -12,6 +12,8 @@ export class EditProfileComponent implements OnInit {
   editForm: FormGroup;
   user: User;
   imgUrl: string;
+  username: string;
+  wrongImg: boolean = false;
 
   constructor(private authService: AuthService) {}
 
@@ -23,9 +25,46 @@ export class EditProfileComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
-      imgUrl: new FormControl(this.user.imgUrl, [Validators.required]),
+      imgUrl: new FormControl(this.imgUrl, [Validators.required]),
+    });
+
+    this.editForm.valueChanges.subscribe((data) => {
+      this.imageExist(data.imgUrl).then((exists) => {
+        if (exists) {
+          this.onEditFormValueChange(data);
+          this.wrongImg = false;
+        } else {
+          this.wrongImg = true;
+        }
+      });
     });
   }
 
-  onSubmit() {}
+  imageExist(url: string) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.addEventListener('load', () => resolve(true));
+      img.addEventListener('error', () => resolve(false));
+      img.src = url;
+    });
+  }
+
+  onSubmit() {
+    let updatedUser = {
+      _id: this.user._id,
+      activity: this.user.activity,
+      books: this.user.books,
+      email: this.user.email,
+      imgUrl: this.imgUrl,
+      reviews: this.user.reviews,
+      username: this.username,
+    };
+
+    this.authService.updateUser(updatedUser);
+  }
+
+  onEditFormValueChange(daata) {
+    this.imgUrl = daata.imgUrl;
+    this.username = daata.username;
+  }
 }

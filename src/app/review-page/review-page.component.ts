@@ -23,17 +23,16 @@ export class ReviewPageComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    this.reviewSercie.getReview(id).subscribe((data) => {
-      this.review = data;
+    this.reviewSercie.getReview(id).subscribe((reviewData) => {
+      this.review = reviewData;
       this.reviewSercie.getReviewImage(this.review.bookId).subscribe((data) => {
         this.img = data;
 
         this.reviewSercie
           .getUser(this.review.userId)
           .subscribe((data: User) => {
-            let user = Object.values(data)[0];
-            this.authorId = user._id;
-            this.author = user.username;
+            this.authorId = reviewData.userId;
+            this.author = data.username;
             this.loaded = true;
           });
       });

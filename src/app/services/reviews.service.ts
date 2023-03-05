@@ -72,9 +72,7 @@ export class ReviewsService {
               .subscribe();
             this.http
               .post<Review>(
-                `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/${
-                  Object.keys(data)[0]
-                }/reviews/.json`,
+                `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/reviews/.json`,
                 {
                   id: Object.values(dataInner)[0],
                 }

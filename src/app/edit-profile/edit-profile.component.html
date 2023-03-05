@@ -22,10 +22,17 @@
           id="imageUrl"
         />
       </div>
-      <button [disabled]="!editForm.valid" class="btn">Save</button>
+      <button
+        [disabled]="!editForm.valid || wrongImg"
+        class="btn"
+        type="submit"
+      >
+        Save
+      </button>
     </form>
     <div class="imgContainer">
       <img class="imgContainer__img" [src]="imgUrl" alt="profile pic" />
+      <p class="warningText" *ngIf="wrongImg">Wrong url</p>
     </div>
   </div>
 </div>
