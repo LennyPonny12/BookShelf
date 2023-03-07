@@ -36,6 +36,11 @@ export class HeadereComponent implements OnInit, OnDestroy {
       this.user = data;
     });
     this.user = this.authService.user;
+    this.router.events.subscribe((val: any) => {
+      if (val.constructor.name === 'NavigationSkipped') return;
+
+      this.dropdown = false;
+    });
   }
 
   ngOnDestroy(): void {
@@ -43,7 +48,7 @@ export class HeadereComponent implements OnInit, OnDestroy {
   }
 
   dropdownFunction() {
-    if (this.dropdown === false) {
+    if (!this.dropdown) {
       this.dropdown = true;
       this.changeDetector.detectChanges();
       this.rendere.addClass(this.dropdownElement.nativeElement, 'show');
@@ -54,8 +59,8 @@ export class HeadereComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
     this.router.navigate(['main']);
     this.dropdownFunction();
+    this.authService.logout();
   }
 }

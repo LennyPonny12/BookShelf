@@ -1,0 +1,13 @@
+<div
+  class="content"
+  #bookContainer
+  (mouseenter)="onHover = true"
+  (mouseleave)="onHover = false"
+  (click)="onNavigate()"
+>
+  <div [ngClass]="{ onHoverBackground: onHover }" class="fade"></div>
+  <div class="bookInfo" *ngIf="loaded && onHover">
+    <span>{{ book.title | short : 18 }}</span>
+    <span class="bookInfo__rating">{{ rating }}/5</span>
+  </div>
+</div>

@@ -12,7 +12,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './main-body/sidebar/sidebar.component';
-import { ActivityItemComponent } from './main-body/profile/profile-page/activity-item/activity-item.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './main-body/news-list/news-list-item/news/news.component';
 import { SearchComponent } from './main-body/search/search.component';
@@ -28,6 +27,8 @@ import { ReviewProfileItemComponent } from './main-body/profile/profile-page/rev
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfilePageComponent } from './main-body/profile/profile-page/profile-page.component';
 import { ProfileComponent } from './main-body/profile/profile.component';
+import { BookProfileItemComponent } from './main-body/profile/profile-page/book-profile-item/book-profile-item.component';
+import { BookEditComponent } from './book/book-edit/book-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,6 @@ import { ProfileComponent } from './main-body/profile/profile.component';
     SidebarComponent,
     AuthComponentComponent,
     ProfileComponent,
-    ActivityItemComponent,
     FooterComponent,
     NewsComponent,
     ShortPipe,
@@ -54,6 +54,8 @@ import { ProfileComponent } from './main-body/profile/profile.component';
     ReviewProfileItemComponent,
     EditProfileComponent,
     ProfilePageComponent,
+    BookProfileItemComponent,
+    BookEditComponent,
   ],
   imports: [
     BrowserModule,

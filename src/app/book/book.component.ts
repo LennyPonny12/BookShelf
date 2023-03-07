@@ -14,10 +14,13 @@ export class BookComponent implements OnInit {
   book: Book;
   comments: CommentInter[] = [];
   loaded: boolean = false;
+  loadedUserStatusOfBOok: boolean = false;
   isLogged = false;
   isAddingComment = false;
+  userHasBook: boolean = null;
   title: string;
   description: string;
+  rating;
 
   constructor(
     private bookService: BookSerivce,
@@ -26,6 +29,26 @@ export class BookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.authService.user) {
+      this.bookService.userHasBook.subscribe((data) => {
+        if (this.userHasBook === null) {
+          this.userHasBook = true;
+          return;
+        }
+        this.userHasBook = data;
+        this.bookService
+          .getRatingOfBook(this.authService.user._id, this.book.id)
+          .subscribe((rating) => {
+            if (rating) {
+              this.rating = Object.values(rating).find((ratingSingle) => {
+                return ratingSingle.id === this.book.id;
+              });
+              this.rating = this.rating.rating;
+            }
+            this.loadedUserStatusOfBOok = true;
+          });
+      });
+    }
     this.route.paramMap.subscribe((param) => {
       this.book = this.bookService.getBook(+param.get('id'));
       if (this.book) {
@@ -37,6 +60,12 @@ export class BookComponent implements OnInit {
       if (this.book) {
         this.loaded = true;
         this.organizeComments();
+
+        if (this.authService.user)
+          this.bookService.checkUserHasBOok(
+            this.book.id,
+            this.authService.user._id
+          );
       }
     });
     if (this.authService.user) {
@@ -57,10 +86,15 @@ export class BookComponent implements OnInit {
   organizeComments() {
     for (let key in this.book.comments) {
       this.comments.push({ commentId: key, ...this.book.comments[key] });
+      console.log(this.book.comments);
     }
   }
 
   onDelete(data: CommentInter) {
     this.bookService.removeComment(this.book.id, data.commentId);
+  }
+
+  addBookToProfile() {
+    this.bookService.addBookToProfile(this.book.idNumber);
   }
 }

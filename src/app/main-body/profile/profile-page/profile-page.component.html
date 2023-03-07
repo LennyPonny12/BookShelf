@@ -26,15 +26,18 @@
     <div class="lower">
       <div class="statContainer">
         <span class="statContainer__heading">Book read:</span>
-        <span class="statContainer__stat">{{ user.books.length }}</span>
+        <span class="statContainer__stat">{{ numOfBooks }}</span>
       </div>
       <div class="statContainer">
         <span class="statContainer__heading">Hours read:</span>
-        <span class="statContainer__stat">{{ calcHours() }}</span>
+        <span class="statContainer__stat">{{ hours }}</span>
       </div>
       <div class="statContainer">
         <span class="statContainer__heading">Avrage rating:</span>
-        <span class="statContainer__stat">{{ user.books.length }}</span>
+        <span class="statContainer__stat" *ngIf="numOfBooks > 0">{{
+          (avrageRating / numOfBooks).toFixed(1)
+        }}</span>
+        <span class="statContainer__stat" *ngIf="numOfBooks === 0">0</span>
       </div>
       <div class="statContainer">
         <span class="statContainer__heading">Wrote reviews:</span>
@@ -45,15 +48,17 @@
 
   <main class="main">
     <div class="left">
-      <span class="main__heading">Your activity:</span>
-      <div class="list" *ngIf="user.activity">
-        <app-activity-item
-          *ngFor="let activity of user.activity"
-          [activity]="activity"
-        ></app-activity-item>
+      <span class="main__heading">{{ user.username }}'s books:</span>
+      <div class="bookList" *ngIf="user.books">
+        <app-book-profile-item
+          *ngFor="let book of user.books"
+          [bookId]="book.id"
+          [rating]="book.rating"
+          (avrageRating)="addToRating($event)"
+        ></app-book-profile-item>
       </div>
-      <div class="main__heading noActivity" *ngIf="!user.activity">
-        There is no activity!
+      <div class="main__heading noActivity" *ngIf="user.books.length === 0">
+        There are no books!
       </div>
     </div>
     <div class="right">
@@ -64,7 +69,7 @@
           [reviewId]="review.id"
         ></app-review-profile-item>
       </div>
-      <div class="main__heading noActivity" *ngIf="!user.reviews">
+      <div class="main__heading noActivity" *ngIf="user.reviews.length === 0">
         There are no reviews!
       </div>
     </div>

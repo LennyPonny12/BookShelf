@@ -52,7 +52,6 @@ export class EditProfileComponent implements OnInit {
   onSubmit() {
     let updatedUser = {
       _id: this.user._id,
-      activity: this.user.activity,
       books: this.user.books,
       email: this.user.email,
       imgUrl: this.imgUrl,

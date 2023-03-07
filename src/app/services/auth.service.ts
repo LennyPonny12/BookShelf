@@ -65,6 +65,7 @@ export class AuthService {
     let experationDate = new Date(
       new Date().getTime() + +resData.expiresIn * 1000
     );
+
     this.http
       .get<User>(
         `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
@@ -75,7 +76,6 @@ export class AuthService {
       .subscribe((data) => {
         user = data;
         if (!user) {
-          console.log(resData);
           this.http
             .put<User>(
               `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${resData.localId.slice(
@@ -87,28 +87,8 @@ export class AuthService {
                 username: `User${resData.localId.slice(0, 4)}`,
                 imgUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcCpFkOFiN-kJ1BgVgVKqhlCNfjNIeRtZKA&usqp=CAU',
-                books: [
-                  {
-                    author: 'Anna Linda',
-                    pages: 297,
-                    timeToRead: 3.9,
-                    rating: 4.1,
-                  },
-                ],
-                activity: [
-                  {
-                    title: 'Read a book',
-                    date: new Date(),
-                    imgUrl:
-                      'https://s.lubimyczytac.pl/upload/books/4000/4454/286617-170x243.jpg',
-                  },
-                  {
-                    title: 'Read a book',
-                    date: new Date(),
-                    imgUrl:
-                      'https://s.lubimyczytac.pl/upload/books/4000/4454/286617-170x243.jpg',
-                  },
-                ],
+                books: [],
+                reviews: [],
                 _id: resData.localId.slice(0, 6),
               }
             )
@@ -178,6 +158,11 @@ export class AuthService {
   }
 
   updateUser(user) {
+    this.http
+      .delete(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${user._id}/.json`
+      )
+      .subscribe();
     this.http
       .put(
         `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${user._id}/.json`,

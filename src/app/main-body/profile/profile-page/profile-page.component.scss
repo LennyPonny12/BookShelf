@@ -119,14 +119,13 @@
   width: 40%;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+.bookList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .noActivity {
-  margin-top: 6rem;
+  margin-top: 2rem;
   color: #999;
   text-transform: uppercase;
 }

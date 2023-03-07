@@ -6,7 +6,7 @@ export interface Book {
   author: string;
   title: string;
   imgUrl: string;
-  comments: CommentInter[]; //userId
+  comments: CommentInter[];
   pages: number;
   timeToRead: number;
   rating: number;

@@ -1,4 +1,3 @@
-import { Activity } from './activity.inteface';
 import { Book } from './book.interface';
 import { Review } from './review';
 
@@ -7,7 +6,6 @@ export interface User {
   username: string;
   imgUrl: string;
   books: Book[];
-  activity: Activity[];
   reviews: Review[];
   _id: string;
   _token: string;

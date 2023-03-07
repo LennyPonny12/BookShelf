@@ -16,6 +16,17 @@
           >Comments: {{ book.comments ? book.comments.length : 0 }}</span
         >
       </div>
+      <button
+        (click)="addBookToProfile()"
+        class="btn btnAdd"
+        *ngIf="isLogged && !userHasBook"
+      >
+        Add to profile
+      </button>
+      <div class="alreadyText" *ngIf="userHasBook && loadedUserStatusOfBOok">
+        <span> You already have this book rated: ({{ rating }}) </span>
+        <button class="btn alreadyText__btn">edit</button>
+      </div>
     </div>
   </div>
   <div class="commentList">
@@ -51,4 +62,5 @@
   <button class="btn" *ngIf="isLogged" (click)="isAddingComment = true">
     Add comment
   </button>
+  <app-book-edit class="bookEdit" [book]="book"></app-book-edit>
 </article>

@@ -21,7 +21,11 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     children: [
-      { path: ':id/edit', component: EditProfileComponent },
+      {
+        path: ':id/edit',
+        component: EditProfileComponent,
+        canActivate: [isLogged],
+      },
       { path: ':id', component: ProfilePageComponent },
     ],
   },

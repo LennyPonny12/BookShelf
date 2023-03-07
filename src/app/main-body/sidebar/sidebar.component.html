@@ -8,25 +8,25 @@
       <div class="statsContainer">
         <h3 class="statsContainer__heading">BOOK READ:</h3>
         <span class="statsContainer__number">{{
-          user !== null ? user.books.length : 0
+          user !== null ? numOfBooks : 0
         }}</span>
       </div>
       <div class="statsContainer">
         <h3 class="statsContainer__heading">HOURS READ:</h3>
         <span class="statsContainer__number">{{
-          user !== null ? calcHours() : 0
-        }}</span>
-      </div>
-      <div class="statsContainer">
-        <h3 class="statsContainer__heading">LIKED REVIEWS:</h3>
-        <span class="statsContainer__number">{{
-          user !== null ? user.numberBooks : 0
+          user !== null ? hours : 0
         }}</span>
       </div>
       <div class="statsContainer">
         <h3 class="statsContainer__heading">AVRAGE RATING:</h3>
         <span class="statsContainer__number">{{
-          user !== null ? user.numberBooks : 0
+          user !== null ? rating : 0
+        }}</span>
+      </div>
+      <div class="statsContainer">
+        <h3 class="statsContainer__heading">WROTE REVIEWS:</h3>
+        <span class="statsContainer__number">{{
+          user !== null ? numOfReviews : 0
         }}</span>
       </div>
     </div>

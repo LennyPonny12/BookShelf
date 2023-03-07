@@ -14,7 +14,10 @@ export class ReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reviewService.reviews.subscribe((reviews) => {
-      this.reviews = reviews.slice(-4);
+      if (reviews) {
+        if (reviews.length >= 4) this.reviews = reviews.slice(-4);
+        else this.reviews = reviews.slice(-reviews.length);
+      }
     });
   }
 }

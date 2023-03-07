@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user.inteface';
 
@@ -5,11 +6,10 @@ import { User } from '../interfaces/user.inteface';
   providedIn: 'root',
 })
 export class UserService {
+  constructor(private http: HttpClient) {}
+
   calcHours(user: User) {
-    let hours = 0;
-    user.books.forEach((book) => {
-      hours += book.timeToRead;
-    });
-    return hours;
+    let books = Object.values(user.books);
+    return books;
   }
 }

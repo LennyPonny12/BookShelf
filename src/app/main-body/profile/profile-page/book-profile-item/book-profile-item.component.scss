@@ -1,0 +1,47 @@
+.content {
+  box-shadow: 0 0 2.5rem #00000067;
+  height: 16rem;
+  width: 12rem;
+  background-size: cover;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.fade {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  background-color: #00000078;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.onHoverBackground {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.bookInfo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 100;
+  gap: 5px;
+  color: #fff;
+  padding: 1rem;
+
+  &__rating {
+    font-size: 1.4rem;
+  }
+}
