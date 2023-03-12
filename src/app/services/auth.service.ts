@@ -179,4 +179,21 @@ export class AuthService {
         this.userSubj.next(this.user);
       });
   }
+
+  emitWhenUserUpdates() {
+    this.http
+      .get<User>(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${this.user._id}/.json`
+      )
+      .subscribe((user) => {
+        this.user = {
+          ...user,
+          _token: this.user._token,
+          _tokenExpiration: this.user._tokenExpiration,
+        };
+        localStorage.removeItem('userData');
+        localStorage.setItem('userData', JSON.stringify(this.user));
+        this.userSubj.next(this.user);
+      });
+  }
 }

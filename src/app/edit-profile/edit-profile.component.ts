@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user.inteface';
 import { AuthService } from '../services/auth.service';
 
@@ -14,30 +15,41 @@ export class EditProfileComponent implements OnInit {
   imgUrl: string;
   username: string;
   wrongImg: boolean = false;
+  loaded: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.user = this.authService.user;
-    this.imgUrl = this.user.imgUrl;
-    this.editForm = new FormGroup({
-      username: new FormControl(this.user.username, [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-      imgUrl: new FormControl(this.imgUrl, [Validators.required]),
-    });
+    this.authService
+      .getUser(this.route.snapshot.paramMap.get('id'))
+      .subscribe((user) => {
+        this.user = user;
+        this.imgUrl = this.user.imgUrl;
 
-    this.editForm.valueChanges.subscribe((data) => {
-      this.imageExist(data.imgUrl).then((exists) => {
-        if (exists) {
-          this.onEditFormValueChange(data);
-          this.wrongImg = false;
-        } else {
-          this.wrongImg = true;
-        }
+        this.editForm = new FormGroup({
+          username: new FormControl(user.username, [
+            Validators.required,
+            Validators.minLength(6),
+          ]),
+          imgUrl: new FormControl(this.imgUrl, [Validators.required]),
+        });
+
+        this.editForm.valueChanges.subscribe((data) => {
+          this.imageExist(data.imgUrl).then((exists) => {
+            if (exists) {
+              this.onEditFormValueChange(data);
+              this.wrongImg = false;
+            } else {
+              this.wrongImg = true;
+            }
+          });
+        });
+
+        this.loaded = true;
       });
-    });
   }
 
   imageExist(url: string) {

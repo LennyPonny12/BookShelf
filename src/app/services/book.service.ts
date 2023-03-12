@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Book } from '../interfaces/book.interface';
 import { CommentInter } from '../interfaces/comment.interface';
 import { User } from '../interfaces/user.inteface';
@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 export class BookSerivce {
   books = new BehaviorSubject<Book[]>([null]);
   userHasBook = new BehaviorSubject<boolean>(false);
+  avgRatingSubject = new BehaviorSubject<string>(null);
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -81,13 +82,31 @@ export class BookSerivce {
       .subscribe();
   }
 
-  addBookToProfile(idNumber: number) {
+  addBookToProfile(idNumber: number, rating: number) {
     this.http
       .post(
         `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${this.authService.user._id}/books.json`,
-        { id: Object.values(this.books.getValue()[idNumber])[0] }
+        {
+          id: Object.values(this.books.getValue()[idNumber])[0],
+          rating: rating,
+        }
       )
-      .subscribe();
+      .subscribe((data) => {
+        this.http
+          .put(
+            `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${
+              this.authService.user._id
+            }/books/${Object.values(data)[0]}.json`,
+            {
+              id: Object.values(this.books.getValue()[idNumber])[0],
+              rating: rating,
+              idToChange: Object.values(data)[0],
+            }
+          )
+          .subscribe(() => {
+            this.authService.emitWhenUserUpdates();
+          });
+      });
   }
 
   checkUserHasBOok(bookId: string, userId: string) {
@@ -129,5 +148,51 @@ export class BookSerivce {
     return this.http.get(
       `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/books/.json`
     );
+  }
+
+  changeRatingOfBook(rating: number, book: Book) {
+    return this.http
+      .get(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${this.authService.user._id}/books/.json`
+      )
+      .subscribe((data) => {
+        let books = Object.values(data);
+        let correctBook = books.find((bookFind) => {
+          if (book.id === bookFind.id) return bookFind;
+        });
+        console.log(correctBook);
+
+        this.http
+          .put(
+            `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${this.authService.user._id}/books/${correctBook.idToChange}/.json`,
+            {
+              id: correctBook.id,
+              rating: rating,
+              idToChange: correctBook.idToChange,
+            }
+          )
+          .subscribe();
+      });
+  }
+
+  gettingAvgRatingOfBook(bookId: string) {
+    this.http
+      .get<User[]>(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/.json`
+      )
+      .subscribe((data) => {
+        let arrOfUsers = Object.values(data);
+        let ratings = [];
+        arrOfUsers.forEach((user) => {
+          if (!user.books) return;
+
+          let booksOfUser = Object.values(user.books);
+          booksOfUser.forEach((book) => {
+            if (book.id === bookId) ratings.push(book.rating);
+          });
+        });
+        let allratings = ratings.reduce((acc, value) => acc + value, 0);
+        this.avgRatingSubject.next((allratings / ratings.length).toFixed(2));
+      });
   }
 }

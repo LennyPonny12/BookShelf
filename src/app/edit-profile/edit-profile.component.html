@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="loaded">
   <h2 class="heading">Edit your profile {{ user.username }}:</h2>
   <div class="mainContent">
     <form class="form" (ngSubmit)="onSubmit()" [formGroup]="editForm">

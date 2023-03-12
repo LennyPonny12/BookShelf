@@ -11,21 +11,33 @@
       </div>
       <div class="headingTextContainer__text">{{ book.description }}</div>
       <div class="lowerContainer">
-        <span class="lowerContainer__rating">Rating: {{ book.rating }}</span>
+        <span class="lowerContainer__rating">Rating: {{ avgRating }}</span>
         <span class="lowerContainer__comments"
           >Comments: {{ book.comments ? book.comments.length : 0 }}</span
         >
       </div>
+      <div class="ratingBoxContainer" *ngIf="isAddingBook">
+        <span class="ratingBoxContainer__text">Choose rating:</span>
+        <div
+          class="ratingBox"
+          (click)="addBookToProfile(rating)"
+          *ngFor="let rating of ratingBoxArr"
+        >
+          {{ rating }}
+        </div>
+      </div>
       <button
-        (click)="addBookToProfile()"
+        (click)="isAddingBook = true"
         class="btn btnAdd"
-        *ngIf="isLogged && !userHasBook"
+        *ngIf="isLogged && !userHasBook && !isAddingBook"
       >
         Add to profile
       </button>
       <div class="alreadyText" *ngIf="userHasBook && loadedUserStatusOfBOok">
         <span> You already have this book rated: ({{ rating }}) </span>
-        <button class="btn alreadyText__btn">edit</button>
+        <button (click)="onEditMode()" class="btn alreadyText__btn">
+          edit
+        </button>
       </div>
     </div>
   </div>
@@ -62,5 +74,10 @@
   <button class="btn" *ngIf="isLogged" (click)="isAddingComment = true">
     Add comment
   </button>
-  <app-book-edit class="bookEdit" [book]="book"></app-book-edit>
+  <app-book-edit
+    *ngIf="editingBook"
+    class="bookEdit"
+    [book]="book"
+    (cancelEdditing)="onCancelEdition($event)"
+  ></app-book-edit>
 </article>

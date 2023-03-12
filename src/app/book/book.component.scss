@@ -131,4 +131,30 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ratingBoxContainer {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+
+  &__text {
+    color: #333;
+    font-size: 1.2rem;
+  }
+}
+
+.ratingBox {
+  padding: 7px 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    background: #fff;
+  }
 }
