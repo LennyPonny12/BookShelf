@@ -17,4 +17,8 @@ export class NewsListItemComponent {
   onArticle() {
     this.router.navigate(['news', this.index]);
   }
+
+  getDate(date) {
+    return new Date(date).toDateString();
+  }
 }

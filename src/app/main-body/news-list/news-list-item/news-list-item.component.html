@@ -4,7 +4,7 @@
     <span class="textContainer__text">{{
       news.description | short : 180
     }}</span>
-    <span class="textContainer__date">{{ news.date }}</span>
+    <span class="textContainer__date">{{ getDate(news.date) }}</span>
   </div>
   <div
     class="imgContainer"

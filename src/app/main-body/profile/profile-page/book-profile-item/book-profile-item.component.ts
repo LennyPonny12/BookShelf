@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from 'src/app/interfaces/book.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { BookSerivce } from 'src/app/services/book.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class BookProfileItemComponent implements AfterViewInit {
 
   constructor(
     private rendere: Renderer2,
+    private authService: AuthService,
     private bookService: BookSerivce,
     private router: Router
   ) {}
@@ -45,7 +47,15 @@ export class BookProfileItemComponent implements AfterViewInit {
     });
   }
 
-  onNavigate() {
+  onNavigate(event: any) {
+    if (event.target.classList.contains('icon__icon')) return;
     this.router.navigate(['/book', this.book.idNumber]);
+  }
+
+  onDeleteBook() {
+    this.bookService.removeBookFromProfile(
+      this.authService.user._id,
+      this.bookId
+    );
   }
 }

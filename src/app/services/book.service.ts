@@ -16,24 +16,27 @@ export class BookSerivce {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // push() {
-  //   this.http
-  //     .post<Book>(
-  //       'https://bookshelf-1a062-default-rtdb.firebaseio.com/books/.json',
-  //       {
-  //         author: 'To Kill a Mockingbird',
-  //         title: 'Harper Lee',
-  //         comments: [],
-  //         imgUrl:
-  //           'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553383690i/2657.jpg',
-  //         pages: 511,
-  //         rating: 3.9,
-  //         timeToRead: 27.1,
-  //         id: 4,
-  //       }
-  //     )
-  //     .subscribe((data) => {});
-  // }
+  //   push() {
+  //     this.http
+  //       .post<Book>(
+  //         'https://bookshelf-1a062-default-rtdb.firebaseio.com/books/.json',
+  //         {
+  //           author: 'Jennifer Hillier',
+  //           title: 'Things We Do in the Dark',
+  //           description: `
+  //           Things We Do in the Dark is a brilliant new thriller from Jennifer Hillier, the award-winning author of the breakout novels Little Secrets and Jar of Hearts. Paris Peralta is suspected of killing her celebrity husband, and her long-hidden past now threatens to destroy her future.
+
+  // `,
+  //           comments: [],
+  //           imgUrl:
+  //             'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1678279886i/58724802.jpg',
+  //           pages: 211,
+  //           timeToRead: 11.7,
+  //           id: 14,
+  //         }
+  //       )
+  //       .subscribe((data) => {});
+  //   }
 
   getBooks() {
     this.http
@@ -193,6 +196,27 @@ export class BookSerivce {
         });
         let allratings = ratings.reduce((acc, value) => acc + value, 0);
         this.avgRatingSubject.next((allratings / ratings.length).toFixed(2));
+      });
+  }
+
+  removeBookFromProfile(userId: string, bookId: string) {
+    this.http
+      .get(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/books/.json`
+      )
+      .subscribe((data) => {
+        let books = Object.values(data);
+        let bookToDelete = books.find((book) => {
+          return book.id === bookId;
+        });
+
+        this.http
+          .delete(
+            `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/books/${bookToDelete.idToChange}.json`
+          )
+          .subscribe(() => {
+            this.authService.emitWhenUserUpdates();
+          });
       });
   }
 }

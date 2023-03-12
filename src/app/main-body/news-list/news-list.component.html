@@ -1,5 +1,6 @@
 <div class="newsList" [ngClass]="{ blur: isBlur < 2 }">
   <app-news-list-item
+    ngIf="loaded"
     *ngFor="let newsEl of newsList; let i = index"
     [news]="newsEl"
     [index]="i"

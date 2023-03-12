@@ -12,6 +12,7 @@ import { BookSerivce } from '../services/book.service';
 })
 export class BookComponent implements OnInit {
   book: Book;
+  numberObBooks: number = 0;
   editingBook: boolean = false;
   comments: CommentInter[] = [];
   loaded: boolean = false;
@@ -34,6 +35,7 @@ export class BookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.avgRating = '0';
     //checking if user has book
     if (this.authService.user) {
       this.bookService.userHasBook.subscribe((data) => {
@@ -45,15 +47,13 @@ export class BookComponent implements OnInit {
 
         //getting user rating of book
         this.bookService
-          //TUEKJ COS DO ROBOTY
           .getRatingOfBook(this.authService.user._id, this.book.id)
           .subscribe((rating) => {
             if (rating) {
               this.rating = Object.values(rating).find((ratingSingle) => {
-                return ratingSingle.id === this.book.id;
+                if (ratingSingle.id === this.book.id) return ratingSingle;
               });
-              console.log(rating);
-              this.rating = this.rating.rating;
+              if (this.rating) this.rating = this.rating.rating;
             }
             this.loadedUserStatusOfBOok = true;
           });
@@ -84,7 +84,8 @@ export class BookComponent implements OnInit {
         this.loaded = true;
         this.organizeComments();
         this.bookService.gettingAvgRatingOfBook(this.book.id);
-
+        if (this.book.comments)
+          this.numberObBooks = Object.values(this.book.comments).length;
         if (this.authService.user)
           this.bookService.checkUserHasBOok(
             this.book.id,
@@ -112,7 +113,6 @@ export class BookComponent implements OnInit {
   organizeComments() {
     for (let key in this.book.comments) {
       this.comments.push({ commentId: key, ...this.book.comments[key] });
-      console.log(this.book.comments);
     }
   }
 

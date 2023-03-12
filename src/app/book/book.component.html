@@ -9,11 +9,13 @@
         <h2 class="infoContainer__title">{{ book.title }}</h2>
         <span class="infoContainer__author">{{ book.author }}</span>
       </div>
-      <div class="headingTextContainer__text">{{ book.description }}</div>
+      <div class="headingTextContainer__text">
+        {{ book.description | short : 300 }}
+      </div>
       <div class="lowerContainer">
         <span class="lowerContainer__rating">Rating: {{ avgRating }}</span>
         <span class="lowerContainer__comments"
-          >Comments: {{ book.comments ? book.comments.length : 0 }}</span
+          >Comments: {{ numberObBooks ? numberObBooks : 0 }}</span
         >
       </div>
       <div class="ratingBoxContainer" *ngIf="isAddingBook">
