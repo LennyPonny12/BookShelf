@@ -36,4 +36,8 @@ export class NewsComponent implements OnInit {
       this.news = arr[+this.route.snapshot.paramMap.get('id')];
     });
   }
+
+  getNewsDate(date: Date) {
+    return this.newsService.getDate(date);
+  }
 }

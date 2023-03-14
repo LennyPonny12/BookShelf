@@ -12,6 +12,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  word-break: break-all;
 }
 
 html {
@@ -27,4 +28,32 @@ body {
 
 .onOverlay {
   overflow-y: hidden;
+}
+
+//1100
+@media (max-width: 69em) {
+  html {
+    font-size: 60%;
+  }
+}
+
+//950
+@media (max-width: 59em) {
+  html {
+    font-size: 55%;
+  }
+}
+
+//700
+@media (max-width: 43em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+//500
+@media (max-width: 31em) {
+  html {
+    font-size: 47.5%;
+  }
 }

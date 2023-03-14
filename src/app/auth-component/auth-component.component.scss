@@ -70,3 +70,14 @@
   color: rgb(164, 42, 42);
   font-size: 1.4rem;
 }
+
+@media (max-width: 31em) {
+  .btn {
+    font-size: 1.4rem;
+  }
+
+  .emailContainer,
+  .passwordContainer {
+    width: 80%;
+  }
+}

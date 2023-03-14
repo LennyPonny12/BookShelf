@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Review } from 'src/app/interfaces/review';
+import { AuthService } from 'src/app/services/auth.service';
 import { ReviewsService } from 'src/app/services/reviews.service';
 
 @Component({
@@ -16,7 +18,8 @@ export class ReviewProfileItemComponent implements OnInit {
 
   constructor(
     private reviewService: ReviewsService,
-    private rendere: Renderer2
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +33,14 @@ export class ReviewProfileItemComponent implements OnInit {
           this.loaded = true;
         });
     });
+  }
+
+  onNavigate(event: any) {
+    if (event.target.classList.contains('icon__icon')) return;
+    this.router.navigate(['/review', this.reviewId]);
+  }
+
+  onDeleteRevieew() {
+    this.reviewService.deleteReview(this.reviewId, this.authService.user._id);
   }
 }

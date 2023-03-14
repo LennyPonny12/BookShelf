@@ -67,4 +67,17 @@
       cursor: pointer;
     }
   }
+
+  &__date {
+    font-size: 1.4rem;
+  }
+}
+
+//800
+@media (max-width: 50em) {
+  .text {
+    word-spacing: 1px;
+    line-height: 1.6;
+    font-size: 1.5rem;
+  }
 }

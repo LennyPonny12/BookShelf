@@ -48,7 +48,7 @@
 
 .imgContainer {
   height: 25rem;
-  width: 20rem;
+  width: 25rem;
 
   &__img {
     height: 100%;
@@ -62,4 +62,39 @@
   color: #a10808;
   text-align: center;
   font-size: 1.8rem;
+}
+
+//850
+@media (max-width: 53em) {
+  .btn {
+    width: 20%;
+  }
+}
+
+//550
+@media (max-width: 35em) {
+  .btn {
+    width: 25%;
+  }
+
+  .imgContainer {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .inputContainer__text {
+    font-size: 1.4rem;
+  }
+}
+
+//410
+@media (max-width: 26em) {
+  .btn {
+    width: 30%;
+  }
+
+  .imgContainer {
+    height: 16rem;
+    width: 16rem;
+  }
 }

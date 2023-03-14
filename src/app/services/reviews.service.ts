@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
-import { Book } from '../interfaces/book.interface';
 import { Review } from '../interfaces/review';
 import { User } from '../interfaces/user.inteface';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
   reviews = new BehaviorSubject<Review[]>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getReviewsFromDatabase() {
     this.http
@@ -54,7 +53,6 @@ export class ReviewsService {
             {}
           )
           .subscribe((dataInner) => {
-            console.log(dataInner);
             this.http
               .put(
                 `https://bookshelf-1a062-default-rtdb.firebaseio.com/reviews/${
@@ -77,7 +75,57 @@ export class ReviewsService {
                   id: Object.values(dataInner)[0],
                 }
               )
-              .subscribe();
+              .subscribe((dataIdToChange) => {
+                this.http
+                  .put(
+                    `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/reviews/${
+                      Object.values(dataIdToChange)[0]
+                    }.json`,
+                    {
+                      id: Object.values(dataInner)[0],
+                      idToChange: Object.values(dataIdToChange)[0],
+                    }
+                  )
+                  .subscribe();
+              });
+          });
+      });
+  }
+
+  deleteReview(reviewId, userId) {
+    // this.http
+    //   .delete(
+    //     `https://bookshelf-1a062-default-rtdb.firebaseio.com/reviews/${reviewId}/.json`
+    //   )
+    //   .subscribe((data) => {
+    //     this.http.get(
+    //       `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/reviews/.json`
+    //     );
+    //   });
+
+    this.http
+      .get(
+        `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/reviews/.json`
+      )
+      .subscribe((data) => {
+        let arrayOfReviews = Object.values(data);
+        let correctReview = arrayOfReviews.find(
+          (review) => review.id === reviewId
+        );
+
+        this.http
+          .delete(
+            `https://bookshelf-1a062-default-rtdb.firebaseio.com/reviews/${reviewId}/.json`
+          )
+          .subscribe();
+
+        this.http
+          .delete(
+            `https://bookshelf-1a062-default-rtdb.firebaseio.com/users/${userId}/reviews/${correctReview.idToChange}.json`
+          )
+          .subscribe(() => {
+            this.authService.emitWhenUserUpdates();
+            window.location.reload();
           });
       });
   }

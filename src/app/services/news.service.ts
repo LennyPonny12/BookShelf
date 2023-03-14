@@ -69,4 +69,8 @@ export class NewsService {
       })
       .subscribe();
   }
+
+  getDate(date) {
+    return new Date(date).toLocaleDateString();
+  }
 }

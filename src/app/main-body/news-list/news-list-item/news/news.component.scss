@@ -10,6 +10,9 @@
   height: 20rem;
   overflow: hidden;
   position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 
   &::after {
     content: "";
@@ -32,7 +35,9 @@
 }
 
 .img {
-  transform: translateY(-50%);
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .main {
@@ -60,8 +65,20 @@
   &__author {
     font-size: 2rem;
   }
+  &__date {
+    font-size: 1.6rem;
+  }
 }
 
 .blur {
   filter: blur(10px);
+}
+
+//800
+@media (max-width: 50em) {
+  .text {
+    word-spacing: 1px;
+    line-height: 1.6;
+    font-size: 1.5rem;
+  }
 }

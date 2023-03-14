@@ -33,6 +33,7 @@ export class EditProfileComponent implements OnInit {
           username: new FormControl(user.username, [
             Validators.required,
             Validators.minLength(6),
+            Validators.maxLength(20),
           ]),
           imgUrl: new FormControl(this.imgUrl, [Validators.required]),
         });

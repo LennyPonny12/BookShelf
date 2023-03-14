@@ -18,3 +18,18 @@
 .reviewsBlock {
   margin-top: 10rem;
 }
+
+//800
+@media (max-width: 51em) {
+  .firstBlock {
+    flex-direction: column;
+  }
+
+  .newsList {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}

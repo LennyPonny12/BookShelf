@@ -16,27 +16,27 @@ export class BookSerivce {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  //   push() {
-  //     this.http
-  //       .post<Book>(
-  //         'https://bookshelf-1a062-default-rtdb.firebaseio.com/books/.json',
-  //         {
-  //           author: 'Jennifer Hillier',
-  //           title: 'Things We Do in the Dark',
-  //           description: `
-  //           Things We Do in the Dark is a brilliant new thriller from Jennifer Hillier, the award-winning author of the breakout novels Little Secrets and Jar of Hearts. Paris Peralta is suspected of killing her celebrity husband, and her long-hidden past now threatens to destroy her future.
+  // push() {
+  //   this.http
+  //     .post<Book>(
+  //       'https://bookshelf-1a062-default-rtdb.firebaseio.com/books/.json',
+  //       {
+  //         author: 'Patti Smith',
+  //         title: 'M Train',
+  //         description: `
+  //         M Train begins in the tiny Greenwich Village café where Smith goes every morning for black coffee, ruminates on the world as it is and the world as it was, and writes in her notebook. Through prose that shifts fluidly between dreams and reality, past and present, we travel to Frida Kahlo's Casa Azul in Mexico; to the fertile moon terrain of Iceland; to a ramshackle seaside bungalow in New York's Far Rockaway that Smith acquires just before Hurricane Sandy hits; to the West 4th Street subway station, filled with the sounds of the Velvet Underground after the death of Lou Reed; and to the graves of Genet, Plath, Rimbaud, and Mishima.
 
-  // `,
-  //           comments: [],
-  //           imgUrl:
-  //             'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1678279886i/58724802.jpg',
-  //           pages: 211,
-  //           timeToRead: 11.7,
-  //           id: 14,
-  //         }
-  //       )
-  //       .subscribe((data) => {});
-  //   }
+  //         `,
+  //         comments: [],
+  //         imgUrl:
+  //           'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1585861744i/24728470.jpg',
+  //         pages: 256,
+  //         timeToRead: 33,
+  //         idNumber: 32,
+  //       }
+  //     )
+  //     .subscribe((data) => {});
+  // }
 
   getBooks() {
     this.http

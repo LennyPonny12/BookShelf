@@ -9,3 +9,17 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+//1200
+@media (max-width: 75em) {
+  .container {
+    max-width: 100rem;
+  }
+}
+
+//900
+@media (max-width: 55em) {
+  .container {
+    padding: 0 2rem;
+  }
+}

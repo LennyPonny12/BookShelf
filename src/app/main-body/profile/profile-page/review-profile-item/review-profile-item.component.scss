@@ -1,5 +1,6 @@
 .content {
   background-color: var(--color-darker-main);
+  position: relative;
   box-shadow: 0 0 2rem #0000004c;
   width: 100%;
   word-break: break-all;
@@ -9,6 +10,8 @@
   height: 10rem;
   overflow: hidden;
   position: relative;
+  display: flex;
+  justify-content: center;
 
   &__img {
     height: 100%;
@@ -75,4 +78,45 @@
 .onHover {
   opacity: 1;
   transition: all 0.3s;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  z-index: 1000;
+
+  &__icon {
+    height: 2.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+//800
+@media (max-width: 50em) {
+  .textContainer__content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+}
+
+//700
+
+@media (max-width: 44em) {
+  .textContainer {
+    margin-top: 1rem;
+  }
+
+  .textContainer__title {
+    font-size: 1.5rem;
+  }
+
+  .textContainer__content {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }

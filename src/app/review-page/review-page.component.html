@@ -11,7 +11,7 @@
       <span class="footer__author" [routerLink]="['/profile', authorId]">{{
         author
       }}</span>
-      <span>{{ review.date }}</span>
+      <span class="footer__date">{{ getDate(review.date) }}</span>
     </footer>
   </div>
 </article>

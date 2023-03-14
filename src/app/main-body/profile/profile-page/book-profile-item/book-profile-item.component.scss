@@ -58,3 +58,26 @@
     color: #000;
   }
 }
+
+//700
+@media (max-width: 44em) {
+  .content {
+    height: 14rem;
+    width: 10rem;
+  }
+}
+
+//550
+@media (max-width: 34em) {
+  .content {
+    height: 16rem;
+    width: 12rem;
+  }
+}
+
+@media (max-width: 30em) {
+  .content {
+    height: 20rem;
+    width: 15rem;
+  }
+}

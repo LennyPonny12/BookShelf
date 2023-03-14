@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Review } from '../interfaces/review';
 import { User } from '../interfaces/user.inteface';
+import { NewsService } from '../services/news.service';
 import { ReviewsService } from '../services/reviews.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class ReviewPageComponent implements OnInit {
 
   constructor(
     private reviewSercie: ReviewsService,
+    private newsService: NewsService,
     private route: ActivatedRoute
   ) {}
 
@@ -37,5 +39,9 @@ export class ReviewPageComponent implements OnInit {
           });
       });
     });
+  }
+
+  getDate(date: Date) {
+    return this.newsService.getDate(date);
   }
 }

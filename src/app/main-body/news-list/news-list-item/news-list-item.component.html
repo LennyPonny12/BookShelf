@@ -2,9 +2,9 @@
   <div class="textContainer">
     <h2 class="textContainer__heading">{{ news.title }}</h2>
     <span class="textContainer__text">{{
-      news.description | short : 180
+      news.description | short : widthViewport / 7
     }}</span>
-    <span class="textContainer__date">{{ getDate(news.date) }}</span>
+    <span class="textContainer__date">{{ getNewsDate(news.date) }}</span>
   </div>
   <div
     class="imgContainer"

@@ -65,7 +65,7 @@
       <span class="main__heading">Your Reviews:</span>
       <div class="reviewList">
         <app-review-profile-item
-          *ngFor="let review of user.reviews"
+          *ngFor="let review of user.reviews.slice(0, 3)"
           [reviewId]="review.id"
         ></app-review-profile-item>
       </div>
