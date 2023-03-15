@@ -163,7 +163,6 @@ export class BookSerivce {
         let correctBook = books.find((bookFind) => {
           if (book.id === bookFind.id) return bookFind;
         });
-        console.log(correctBook);
 
         this.http
           .put(

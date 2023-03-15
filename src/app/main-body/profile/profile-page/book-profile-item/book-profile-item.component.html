@@ -10,7 +10,7 @@
     <span>{{ book.title | short : 18 }}</span>
     <span class="bookInfo__rating">{{ rating }}/5</span>
   </div>
-  <div class="icon" [hidden]="!onHover">
+  <div class="icon" [hidden]="!onHover || !canDelete">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

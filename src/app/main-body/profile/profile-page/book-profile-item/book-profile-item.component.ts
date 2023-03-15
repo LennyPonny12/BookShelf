@@ -21,6 +21,7 @@ import { BookSerivce } from 'src/app/services/book.service';
 export class BookProfileItemComponent implements AfterViewInit {
   @ViewChild('bookContainer') bookContainer: ElementRef;
   @Output() avrageRating = new EventEmitter<number>();
+  @Input() canDelete: boolean;
   @Input() bookId: string;
   @Input() rating: number;
   book: Book;

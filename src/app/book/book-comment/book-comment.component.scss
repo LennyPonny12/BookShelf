@@ -10,6 +10,10 @@
   flex-direction: column;
   gap: 5px;
   align-items: center;
+
+  &__username {
+    font-size: 0.9rem;
+  }
 }
 
 .imgContainer {

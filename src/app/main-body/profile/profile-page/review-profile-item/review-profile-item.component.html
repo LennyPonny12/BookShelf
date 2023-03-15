@@ -33,7 +33,7 @@
   </div>
   <div
     class="icon"
-    [hidden]="!onHover"
+    [hidden]="!onHover || !canDelete"
     (mouseenter)="onHover = true"
     (mouseleave)="onHover = false"
   >

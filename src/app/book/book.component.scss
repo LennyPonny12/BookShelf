@@ -158,3 +158,40 @@
     background: #fff;
   }
 }
+
+//1200
+@media (max-width: 75em) {
+  .imgContainer {
+    height: 38rem;
+  }
+
+  .inputContainer__input {
+    width: 80%;
+  }
+}
+
+//850
+@media (max-width: 53em) {
+  .imgContainer {
+    display: none;
+  }
+
+  .infoContainer__title {
+    font-size: 2.2rem;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+}
+
+//500
+@media (max-width: 30em) {
+  .inputContainer__input {
+    width: 70%;
+  }
+
+  .inputContainer__text {
+    font-size: 1.2rem;
+  }
+}

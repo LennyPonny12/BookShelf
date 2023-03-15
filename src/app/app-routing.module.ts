@@ -11,6 +11,7 @@ import { ProfilePageComponent } from './main-body/profile/profile-page/profile-p
 import { ProfileComponent } from './main-body/profile/profile.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { canEdit } from './services/canEdit.guard';
 import { isLogged } from './services/isLogged.guard.service';
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
       {
         path: ':id/edit',
         component: EditProfileComponent,
-        canActivate: [isLogged],
+        canActivate: [isLogged, canEdit],
       },
       { path: ':id', component: ProfilePageComponent },
     ],

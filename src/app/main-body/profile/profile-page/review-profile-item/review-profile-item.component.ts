@@ -11,6 +11,7 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 })
 export class ReviewProfileItemComponent implements OnInit {
   @Input() reviewId: string;
+  @Input() canDelete: boolean;
   review: Review;
   imgUrl: string;
   loaded: boolean = false;

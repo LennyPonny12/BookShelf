@@ -54,6 +54,7 @@
           *ngFor="let book of user.books"
           [bookId]="book.id"
           [rating]="book.rating"
+          [canDelete]="isLoggedProfile"
           (avrageRating)="addToRating($event)"
         ></app-book-profile-item>
       </div>
@@ -67,6 +68,7 @@
         <app-review-profile-item
           *ngFor="let review of user.reviews.slice(0, 3)"
           [reviewId]="review.id"
+          [canDelete]="isLoggedProfile"
         ></app-review-profile-item>
       </div>
       <div class="main__heading noActivity" *ngIf="user.reviews.length === 0">
